@@ -11,21 +11,21 @@ public class InputTester : MonoBehaviour
 
     private void Update()
     {
-        this.transform.position=transform.position+(_movement * _movementSpeed * Time.deltaTime);
+        this.transform.position = transform.position + (_movement * _movementSpeed * Time.deltaTime);
     }
     private void OnMove(InputValue value)
     {
         Vector2 moveInputValue = value.Get<Vector2>();
-        Debug.Log("LeftStick " + moveInputValue);
+
         _playerPosition.x = transform.position.x + moveInputValue.x;
         _playerPosition.y = transform.position.z + moveInputValue.y;
         _movement = new Vector3(moveInputValue.x, 0.0f, moveInputValue.y);
-      this.transform.LookAt(transform.position + (-_movement) + transform.forward);
+        this.transform.LookAt(transform.position + (-_movement) + transform.forward);
     }
     private void OnSelection(InputValue value)
     {
         Vector2 selectionInputValue = value.Get<Vector2>();
-        Debug.Log("RightStick " + selectionInputValue);     
+
     }
     private void OnDodge()
     {
