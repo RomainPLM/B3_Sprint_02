@@ -11,27 +11,39 @@ public class PlayerScript : MonoBehaviour
     public int _playerNumber;
     public bool _isDead;
     public PlayerInput _playerInput;
+    public Vector2 _blocDisplacementDirection;
+    public BlockDisplacement _blockDisplacement;
 
     private void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
+        // instancier bloc recuperer son scirpt et lui attribué nombre du joueur!
     }
     private void Update()
     {
         //move
         this.transform.position = transform.position + (_movement * _movementSpeed * Time.deltaTime);
         //life
-        if (_isDead == true)
-        {
+        //if (_isDead == true)
+        //{
          
-        }
+        //}
     }
     private void OnMove(InputValue value)
     {
-        Vector2 moveInputValue = value.Get<Vector2>();
-        _playerPosition.x = transform.position.x + moveInputValue.x;
-        _playerPosition.y = transform.position.z + moveInputValue.y;
-        _movement = new Vector3(moveInputValue.x, 0.0f, moveInputValue.y);//dupliquer dans le joystick de droite
-        this.transform.LookAt(transform.position + (-_movement) + transform.forward);// transferer dans le joystick de droite 
+        if (_blockDisplacement._blocIsPosed == true)
+        {
+            Vector2 moveInputValue = value.Get<Vector2>();
+            _playerPosition.x = transform.position.x + moveInputValue.x;
+            _playerPosition.y = transform.position.z + moveInputValue.y;
+            _movement = new Vector3(moveInputValue.x, 0.0f, moveInputValue.y);//dupliquer dans le joystick de droite
+            this.transform.LookAt(transform.position + (-_movement) + transform.forward);// transferer dans le joystick de droite 
+        }
+    }
+    private void OnLook(InputValue value)
+    {
+        Vector2 selectionInputValue = value.Get<Vector2>();
+        //print(selectionInputValue);
+        _blocDisplacementDirection = selectionInputValue;
     }
 }
