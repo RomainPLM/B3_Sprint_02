@@ -1,8 +1,34 @@
 {
     "originalPaths": [
-        "Assets/Unsorted\\OutlineTest.mat"
+        "Assets/Unsorted\\OutlineTest.mat",
+        "Assets/Unsorted\\sphere_standardSurface1_AlbedoTransparency.png",
+        "Assets/Unsorted\\sphere_standardSurface1_MetallicSmoothness.png",
+        "Assets/Unsorted\\sphere_standardSurface1_Normal.png",
+        "Assets/Unsorted\\sphere_standardSurface2_AlbedoTransparency.png",
+        "Assets/Unsorted\\sphere_standardSurface2_MetallicSmoothness.png",
+        "Assets/Unsorted\\sphere_standardSurface2_Normal.png",
+        "Assets/Unsorted\\sphere.fbx",
+        "Assets/Unsorted\\sphere_standardSurface1_BaseMap.png",
+        "Assets/Unsorted\\sphere_standardSurface1_MaskMap.png",
+        "Assets/Unsorted\\sphere_standardSurface1_Normal.png",
+        "Assets/Unsorted\\sphere_standardSurface2_BaseMap.png",
+        "Assets/Unsorted\\sphere_standardSurface2_MaskMap.png",
+        "Assets/Unsorted\\sphere_standardSurface2_Normal.png"
     ],
     "newPaths": [
-        "Assets/Materials\\OutlineTest.mat"
+        "Assets/Materials\\OutlineTest.mat",
+        "Assets/Textures\\sphere_standardSurface1_AlbedoTransparency.png",
+        "Assets/Textures\\sphere_standardSurface1_MetallicSmoothness.png",
+        "Assets/Textures\\sphere_standardSurface1_Normal.png",
+        "Assets/Textures\\sphere_standardSurface2_AlbedoTransparency.png",
+        "Assets/Textures\\sphere_standardSurface2_MetallicSmoothness.png",
+        "Assets/Textures\\sphere_standardSurface2_Normal.png",
+        "Assets/Meshes\\sphere.fbx",
+        "Assets/Textures\\sphere_standardSurface1_BaseMap.png",
+        "Assets/Textures\\sphere_standardSurface1_MaskMap.png",
+        "Assets/Textures\\sphere_standardSurface1_Normal.png",
+        "Assets/Textures\\sphere_standardSurface2_BaseMap.png",
+        "Assets/Textures\\sphere_standardSurface2_MaskMap.png",
+        "Assets/Textures\\sphere_standardSurface2_Normal.png"
     ]
 }
