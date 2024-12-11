@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _ExplosionTex:
-        m_Texture: {fileID: 2800000, guid: 5f7f53073db739744a3e453985bb6cdc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 40040d85e7368e8458d221e48687c4bd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
@@ -47,11 +47,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Dissolve: 0
-    - _Intensity: 23.65
+    - _Intensity: 50
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 0}
     - _FlameColor: {r: 0.8490566, g: 0.33259875, b: 0.11614456, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
