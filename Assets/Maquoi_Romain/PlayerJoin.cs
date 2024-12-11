@@ -8,8 +8,10 @@ public class PlayerJoin : MonoBehaviour
     public Transform[] _spawnPoint;
     private int _numPlayers;
     [SerializeField] InputAction _joinAction;
+    private PlayerInputManager _playerInputManager;
     private void Start()
     {
+        _playerInputManager = GetComponent<PlayerInputManager>();
         _joinAction.Enable();
         _numPlayers = 0;
     }
@@ -36,6 +38,10 @@ public class PlayerJoin : MonoBehaviour
 
         _numPlayers++;
 
+        if (_numPlayers >=2)
+        {
+            _playerInputManager.enabled = false;
+        }
 
     }
 }
