@@ -13,7 +13,11 @@
         "Assets/Unsorted\\sphere_standardSurface1_Normal.png",
         "Assets/Unsorted\\sphere_standardSurface2_BaseMap.png",
         "Assets/Unsorted\\sphere_standardSurface2_MaskMap.png",
-        "Assets/Unsorted\\sphere_standardSurface2_Normal.png"
+        "Assets/Unsorted\\sphere_standardSurface2_Normal.png",
+        "Assets/Unsorted\\lait.fbx",
+        "Assets/Unsorted\\lait_standardSurface1_BaseMap.png",
+        "Assets/Unsorted\\lait_standardSurface1_MaskMap.png",
+        "Assets/Unsorted\\lait_standardSurface1_Normal.png"
     ],
     "newPaths": [
         "Assets/Materials\\OutlineTest.mat",
@@ -29,6 +33,10 @@
         "Assets/Textures\\sphere_standardSurface1_Normal.png",
         "Assets/Textures\\sphere_standardSurface2_BaseMap.png",
         "Assets/Textures\\sphere_standardSurface2_MaskMap.png",
-        "Assets/Textures\\sphere_standardSurface2_Normal.png"
+        "Assets/Textures\\sphere_standardSurface2_Normal.png",
+        "Assets/Meshes\\lait.fbx",
+        "Assets/Textures\\lait_standardSurface1_BaseMap.png",
+        "Assets/Textures\\lait_standardSurface1_MaskMap.png",
+        "Assets/Textures\\lait_standardSurface1_Normal.png"
     ]
 }
