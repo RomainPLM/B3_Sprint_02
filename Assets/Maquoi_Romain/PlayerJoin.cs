@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerJoin : MonoBehaviour
 {
-    public Transform[] _menuSpawnPoints;
+    public Transform[] _spawnPoint;
     private int _numPlayers;
     [SerializeField] InputAction _joinAction;
     private void Start()
@@ -16,8 +16,10 @@ public class PlayerJoin : MonoBehaviour
     //automatically called when player joins the game session
     void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log("Spawn Position: " + _menuSpawnPoints[_numPlayers].position);
-        playerInput.gameObject.transform.position = _menuSpawnPoints[_numPlayers].position;
+        Debug.Log("Spawn Position: " + _spawnPoint[_numPlayers].position);
+        playerInput.gameObject.transform.position = _spawnPoint[_numPlayers].position;
+        playerInput.gameObject.transform.rotation = _spawnPoint[_numPlayers].rotation;
+
         if (_numPlayers == 0)
         {
             playerInput.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
