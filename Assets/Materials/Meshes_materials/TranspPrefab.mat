@@ -29,15 +29,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColor:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 2a07a9af53bc5e84fa93f7b0857be880, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MRAO:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3f26b340b05cc5146a3cff26038b99f1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 2a53dd4cf4e5cc446b3dd5840c5defaa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_6adb4c646bb5423a803aeb493edd2839_Texture_1_Texture2D:
@@ -60,6 +60,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _alpha: 0.872
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
