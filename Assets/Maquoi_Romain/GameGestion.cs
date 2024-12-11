@@ -31,6 +31,36 @@ public class GameGestion : MonoBehaviour
             {
                 _mancheEnd = true;
                 _player2WinAmmount++;
+                //Revive
+                _playerScript1._isDead = false;
+            }
+            else if (_playerScript2._isDead == true)
+            {
+                _mancheEnd = true;
+                _player1WinAmmount++;
+                _playerScript2._isDead = false;
+            }
+            if (_player1WinAmmount == _mancheForWin)
+            {
+                print("Player 1 win");
+                _playerScript1._playerInput.actions.Disable();
+                _playerScript2._playerInput.actions.Disable();
+
+            }
+            else if (_player2WinAmmount == _mancheForWin)
+            {
+                print("Player 2 win");
+                _playerScript1._playerInput.actions.Disable();
+                _playerScript2._playerInput.actions.Disable();
+            }
+            if (_mancheEnd == false)
+            {
+                _playerScript1._playerInput.actions.Enable();
+                _playerScript2._playerInput.actions.Enable();
+            }
+            else
+            {
+                //Action on player
                 _playerScript1._playerInput.actions.Disable();
                 _playerScript2._playerInput.actions.Disable();
                 //respawnPose
@@ -39,44 +69,14 @@ public class GameGestion : MonoBehaviour
                 //respawnRota
                 _playerScript1.gameObject.transform.rotation = _playerJoinScript._spawnPoint[_playerScript1._playerNumber].rotation;
                 _playerScript2.gameObject.transform.rotation = _playerJoinScript._spawnPoint[_playerScript2._playerNumber].rotation;
-                //Revive
-                _playerScript1._isDead = false;
-            }
-            else if (_playerScript2._isDead == true)
-            {
-                _mancheEnd = true;
-                _player1WinAmmount++;
-                _playerScript1._playerInput.actions.Disable();
-                _playerScript2._playerInput.actions.Disable();
-                _playerScript1.gameObject.transform.position = _playerJoinScript._spawnPoint[_playerScript1._playerNumber].position;
-                _playerScript2.gameObject.transform.position = _playerJoinScript._spawnPoint[_playerScript2._playerNumber].position;
-                _playerScript1.gameObject.transform.rotation = _playerJoinScript._spawnPoint[_playerScript1._playerNumber].rotation;
-                _playerScript2.gameObject.transform.rotation = _playerJoinScript._spawnPoint[_playerScript2._playerNumber].rotation;
-                _playerScript2._isDead = false;
+
+                //Action For bloc
+                _playerScript1._didInstance=false;
+                _playerScript2._didInstance = false;
+
             }
         }
-        if (_player1WinAmmount == _mancheForWin)
-        {
-            print("Player 1 win");
-            _playerScript1._playerInput.actions.Disable();
-            _playerScript2._playerInput.actions.Disable();
-
-        }
-        else if (_player2WinAmmount == _mancheForWin)
-        {
-            print("Player 2 win");
-            _playerScript1._playerInput.actions.Disable();
-            _playerScript2._playerInput.actions.Disable();
-        }
-        if (_mancheEnd == false)
-        {
-            _playerScript1._playerInput.actions.Enable();
-            _playerScript2._playerInput.actions.Enable();
-        }
-        else
-        {
-
-        }
+        
     }
     void OnPlayerJoined(PlayerInput playerInput)
     {

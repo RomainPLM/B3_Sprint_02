@@ -705,6 +705,10 @@ MonoBehaviour:
   _playerNumber: 0
   _isDead: 0
   _playerInput: {fileID: 0}
+  _blocDisplacementDirection: {x: 0, y: 0}
+  _blockDisplacement: {fileID: 0}
+  _gameGestion: {fileID: 0}
+  _placableBloc: {fileID: 2628017235863200297, guid: d08355743fb6163418202cb47749c627, type: 3}
 --- !u!54 &5500755202587340474
 Rigidbody:
   m_ObjectHideFlags: 0
