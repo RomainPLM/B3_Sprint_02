@@ -124,6 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _blocDisplacementSize: 4
   _blocDisplacementTimeBetween: 0.25
+  _playerScript: {fileID: 0}
+  _blocIsPosed: 0
 --- !u!54 &8006938287317732837
 Rigidbody:
   m_ObjectHideFlags: 0

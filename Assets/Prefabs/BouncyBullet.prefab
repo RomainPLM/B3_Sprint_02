@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a00d1dd0190818408f164f679e500d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
-  maxBounces: 3
-  lerpSpeed: 100
+  speed: 15
+  maxBounces: 4
+  currentBounces: 0
 --- !u!33 &8594252019828417635
 MeshFilter:
   m_ObjectHideFlags: 0
