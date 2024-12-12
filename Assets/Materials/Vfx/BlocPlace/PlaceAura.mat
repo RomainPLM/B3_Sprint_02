@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OutlineTest
-  m_Shader: {fileID: -6465566751694194690, guid: ea0953afb639925449611245c518201b, type: 3}
+  m_Name: PlaceAura
+  m_Shader: {fileID: -6465566751694194690, guid: 9f1b39fbbe2d86b4699fb2d83dc69718, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -38,14 +38,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Alpha: 3.53
+    - _Power: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Test: 4.34
-    m_Colors:
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &455555918113863323
+--- !u!114 &5756210335389674406
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
