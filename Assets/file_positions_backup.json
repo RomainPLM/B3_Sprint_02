@@ -17,7 +17,12 @@
         "Assets/Unsorted\\lait.fbx",
         "Assets/Unsorted\\lait_standardSurface1_BaseMap.png",
         "Assets/Unsorted\\lait_standardSurface1_MaskMap.png",
-        "Assets/Unsorted\\lait_standardSurface1_Normal.png"
+        "Assets/Unsorted\\lait_standardSurface1_Normal.png",
+        "Assets/Unsorted\\Cloud.fbx",
+        "Assets/Unsorted\\tartine.fbx",
+        "Assets/Unsorted\\tartine_DefaultMaterial_BaseMap.png",
+        "Assets/Unsorted\\tartine_DefaultMaterial_MaskMap.png",
+        "Assets/Unsorted\\tartine_DefaultMaterial_Normal.png"
     ],
     "newPaths": [
         "Assets/Materials\\OutlineTest.mat",
@@ -37,6 +42,11 @@
         "Assets/Meshes\\lait.fbx",
         "Assets/Textures\\lait_standardSurface1_BaseMap.png",
         "Assets/Textures\\lait_standardSurface1_MaskMap.png",
-        "Assets/Textures\\lait_standardSurface1_Normal.png"
+        "Assets/Textures\\lait_standardSurface1_Normal.png",
+        "Assets/Meshes\\Cloud.fbx",
+        "Assets/Meshes\\tartine.fbx",
+        "Assets/Textures\\tartine_DefaultMaterial_BaseMap.png",
+        "Assets/Textures\\tartine_DefaultMaterial_MaskMap.png",
+        "Assets/Textures\\tartine_DefaultMaterial_Normal.png"
     ]
 }
