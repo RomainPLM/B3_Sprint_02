@@ -22,7 +22,11 @@
         "Assets/Unsorted\\tartine.fbx",
         "Assets/Unsorted\\tartine_DefaultMaterial_BaseMap.png",
         "Assets/Unsorted\\tartine_DefaultMaterial_MaskMap.png",
-        "Assets/Unsorted\\tartine_DefaultMaterial_Normal.png"
+        "Assets/Unsorted\\tartine_DefaultMaterial_Normal.png",
+        "Assets/Unsorted\\cuillere.fbx",
+        "Assets/Unsorted\\cuillere_standardSurface1_BaseMap.tga",
+        "Assets/Unsorted\\cuillere_standardSurface1_MaskMap.tga",
+        "Assets/Unsorted\\cuillere_standardSurface1_Normal.tga"
     ],
     "newPaths": [
         "Assets/Materials\\OutlineTest.mat",
@@ -47,6 +51,10 @@
         "Assets/Meshes\\tartine.fbx",
         "Assets/Textures\\tartine_DefaultMaterial_BaseMap.png",
         "Assets/Textures\\tartine_DefaultMaterial_MaskMap.png",
-        "Assets/Textures\\tartine_DefaultMaterial_Normal.png"
+        "Assets/Textures\\tartine_DefaultMaterial_Normal.png",
+        "Assets/Meshes\\cuillere.fbx",
+        "Assets/Textures\\cuillere_standardSurface1_BaseMap.tga",
+        "Assets/Textures\\cuillere_standardSurface1_MaskMap.tga",
+        "Assets/Textures\\cuillere_standardSurface1_Normal.tga"
     ]
 }
