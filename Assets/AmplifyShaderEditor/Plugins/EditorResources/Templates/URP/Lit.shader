@@ -982,8 +982,7 @@ Shader /*ase_name*/ "Hidden/Universal/Lit" /*end*/
 					output.dynamicLightmapUV.xy = input.texcoord2.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
 				#endif
 
-				OUTPUT_SH4( vertexInput.positionWS, normalInput.normalWS.xyz, GetWorldSpaceNormalizeViewDir( vertexInput.positionWS ), output.lightmapUVOrVertexSH.xyz, output.probeOcclusion );
-
+				
 				#if defined(ENABLE_TERRAIN_PERPIXEL_NORMAL)
 					output.lightmapUVOrVertexSH.zw = input.texcoord.xy;
 					output.lightmapUVOrVertexSH.xy = input.texcoord.xy * unity_LightmapST.xy + unity_LightmapST.zw;
@@ -1552,7 +1551,6 @@ Shader /*ase_name*/ "Hidden/Universal/Lit" /*end*/
 				float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, lightDirectionWS));
 
 				//code for UNITY_REVERSED_Z is moved into Shadows.hlsl from 6000.0.22 and or higher
-				positionCS = ApplyShadowClamping(positionCS);
 
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					VertexPositionInputs vertexInput = (VertexPositionInputs)0;
@@ -3018,8 +3016,7 @@ Shader /*ase_name*/ "Hidden/Universal/Lit" /*end*/
 					output.dynamicLightmapUV.xy = input.texcoord2.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
 				#endif
 
-				OUTPUT_SH4( vertexInput.positionWS, normalInput.normalWS.xyz, GetWorldSpaceNormalizeViewDir( vertexInput.positionWS ), output.lightmapUVOrVertexSH.xyz, output.probeOcclusion );
-
+				
 				#if defined(ENABLE_TERRAIN_PERPIXEL_NORMAL)
 					output.lightmapUVOrVertexSH.zw = input.texcoord.xy;
 					output.lightmapUVOrVertexSH.xy = input.texcoord.xy * unity_LightmapST.xy + unity_LightmapST.zw;

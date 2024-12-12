@@ -34,7 +34,7 @@ Shader "TrackSmoke"
         [HideInInspector][NoScaleOffset] unity_LightmapsInd("unity_LightmapsInd", 2DArray) = "" {}
         [HideInInspector][NoScaleOffset] unity_ShadowMasks("unity_ShadowMasks", 2DArray) = "" {}
 
-		//[HideInInspector][ToggleUI] _AddPrecomputedVelocity("Add Precomputed Velocity", Float) = 1
+		[HideInInspector][ToggleUI] _AddPrecomputedVelocity("Add Precomputed Velocity", Float) = 1
 	}
 
 	SubShader
@@ -184,12 +184,14 @@ Shader "TrackSmoke"
 			#pragma multi_compile_fragment _ALPHATEST_ON
 			#define _NORMAL_DROPOFF_TS 1
 			#pragma shader_feature_local _RECEIVE_SHADOWS_OFF
-			#pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
 			#pragma multi_compile_instancing
 			#pragma instancing_options renderinglayer
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
+			#define _SPECULAR_SETUP 1
+			#pragma shader_feature_local_fragment _SPECULARHIGHLIGHTS_OFF
+			#pragma shader_feature_local_fragment _ENVIRONMENTREFLECTIONS_OFF
 			#define ASE_VERSION 19800
 			#define ASE_SRP_VERSION 170003
 
@@ -375,8 +377,7 @@ Shader "TrackSmoke"
 					output.dynamicLightmapUV.xy = input.texcoord2.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
 				#endif
 
-				OUTPUT_SH4( vertexInput.positionWS, normalInput.normalWS.xyz, GetWorldSpaceNormalizeViewDir( vertexInput.positionWS ), output.lightmapUVOrVertexSH.xyz, output.probeOcclusion );
-
+				
 				#if defined(ENABLE_TERRAIN_PERPIXEL_NORMAL)
 					output.lightmapUVOrVertexSH.zw = input.texcoord.xy;
 					output.lightmapUVOrVertexSH.xy = input.texcoord.xy * unity_LightmapST.xy + unity_LightmapST.zw;
@@ -544,7 +545,7 @@ Shader "TrackSmoke"
 				float3 Normal = float3(0, 0, 1);
 				float3 Emission = 0;
 				float3 Specular = 0.5;
-				float Metallic = 0.0;
+				float Metallic = 0;
 				float Smoothness = 0.0;
 				float Occlusion = 1;
 				float Alpha = step( input.ase_color.a , tex2D( _Noise_23, ( input.ase_texcoord9.xy * float2( 1,1 ) ) ).r );
@@ -815,6 +816,7 @@ Shader "TrackSmoke"
 			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#define ASE_FOG 1
+			#define _SPECULAR_SETUP 1
 			#define ASE_VERSION 19800
 			#define ASE_SRP_VERSION 170003
 
@@ -958,7 +960,6 @@ Shader "TrackSmoke"
 				float4 positionCS = TransformWorldToHClip(ApplyShadowBias(positionWS, normalWS, lightDirectionWS));
 
 				//code for UNITY_REVERSED_Z is moved into Shadows.hlsl from 6000.0.22 and or higher
-				positionCS = ApplyShadowClamping(positionCS);
 
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					VertexPositionInputs vertexInput = (VertexPositionInputs)0;
@@ -1127,6 +1128,7 @@ Shader "TrackSmoke"
 			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#define ASE_FOG 1
+			#define _SPECULAR_SETUP 1
 			#define ASE_VERSION 19800
 			#define ASE_SRP_VERSION 170003
 
@@ -1409,6 +1411,7 @@ Shader "TrackSmoke"
 			#pragma multi_compile_fragment _ALPHATEST_ON
 			#define _NORMAL_DROPOFF_TS 1
 			#define ASE_FOG 1
+			#define _SPECULAR_SETUP 1
 			#define ASE_VERSION 19800
 			#define ASE_SRP_VERSION 170003
 
@@ -1709,6 +1712,7 @@ Shader "TrackSmoke"
 			#pragma multi_compile_fragment _ALPHATEST_ON
 			#define _NORMAL_DROPOFF_TS 1
 			#define ASE_FOG 1
+			#define _SPECULAR_SETUP 1
 			#define ASE_VERSION 19800
 			#define ASE_SRP_VERSION 170003
 
@@ -1977,6 +1981,7 @@ Shader "TrackSmoke"
 			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#define ASE_FOG 1
+			#define _SPECULAR_SETUP 1
 			#define ASE_VERSION 19800
 			#define ASE_SRP_VERSION 170003
 
@@ -2316,6 +2321,9 @@ Shader "TrackSmoke"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
+			#define _SPECULAR_SETUP 1
+			#pragma shader_feature_local_fragment _SPECULARHIGHLIGHTS_OFF
+			#pragma shader_feature_local_fragment _ENVIRONMENTREFLECTIONS_OFF
 			#define ASE_VERSION 19800
 			#define ASE_SRP_VERSION 170003
 
@@ -2500,8 +2508,7 @@ Shader "TrackSmoke"
 					output.dynamicLightmapUV.xy = input.texcoord2.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
 				#endif
 
-				OUTPUT_SH4( vertexInput.positionWS, normalInput.normalWS.xyz, GetWorldSpaceNormalizeViewDir( vertexInput.positionWS ), output.lightmapUVOrVertexSH.xyz, output.probeOcclusion );
-
+				
 				#if defined(ENABLE_TERRAIN_PERPIXEL_NORMAL)
 					output.lightmapUVOrVertexSH.zw = input.texcoord.xy;
 					output.lightmapUVOrVertexSH.xy = input.texcoord.xy * unity_LightmapST.xy + unity_LightmapST.zw;
@@ -2667,7 +2674,7 @@ Shader "TrackSmoke"
 				float3 Normal = float3(0, 0, 1);
 				float3 Emission = 0;
 				float3 Specular = 0.5;
-				float Metallic = 0.0;
+				float Metallic = 0;
 				float Smoothness = 0.0;
 				float Occlusion = 1;
 				float Alpha = step( input.ase_color.a , tex2D( _Noise_23, ( input.ase_texcoord9.xy * float2( 1,1 ) ) ).r );
@@ -2803,6 +2810,7 @@ Shader "TrackSmoke"
 
 			#define _NORMAL_DROPOFF_TS 1
 			#define ASE_FOG 1
+			#define _SPECULAR_SETUP 1
 			#define ASE_VERSION 19800
 			#define ASE_SRP_VERSION 170003
 
@@ -3059,6 +3067,7 @@ Shader "TrackSmoke"
 
 			#define _NORMAL_DROPOFF_TS 1
 			#define ASE_FOG 1
+			#define _SPECULAR_SETUP 1
 			#define ASE_VERSION 19800
 			#define ASE_SRP_VERSION 170003
 
@@ -3301,198 +3310,7 @@ Shader "TrackSmoke"
 			ENDHLSL
 		}
 
-		
-		Pass
-		{
-			
-			Name "MotionVectors"
-			Tags { "LightMode"="MotionVectors" }
-
-			ColorMask RG
-
-			HLSLPROGRAM
-
-			#pragma multi_compile _ALPHATEST_ON
-			#define _NORMAL_DROPOFF_TS 1
-			#pragma multi_compile_instancing
-			#pragma multi_compile _ LOD_FADE_CROSSFADE
-			#define ASE_FOG 1
-			#define ASE_VERSION 19800
-			#define ASE_SRP_VERSION 170003
-
-
-			#pragma vertex vert
-			#pragma fragment frag
-
-			#if defined(_SPECULAR_SETUP) && defined(_ASE_LIGHTING_SIMPLE)
-				#define _SPECULAR_COLOR 1
-			#endif
 	
-            #define SHADERPASS SHADERPASS_MOTION_VECTORS
-
-            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
-			#include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RenderingLayers.hlsl"
-		    #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
-		    #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
-		    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-		    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-		    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"
-		    #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/TextureStack.hlsl"
-            #include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
-            #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
-            #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
-		    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
-		    #include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
-
-			#if defined(LOD_FADE_CROSSFADE)
-				#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
-			#endif
-
-			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/MotionVectorsCommon.hlsl"
-
-			
-
-			struct Attributes
-			{
-				float4 positionOS : POSITION;
-				float3 positionOld : TEXCOORD4;
-				#if _ADD_PRECOMPUTED_VELOCITY
-					float3 alembicMotionVector : TEXCOORD5;
-				#endif
-				float4 ase_color : COLOR;
-				float4 ase_texcoord : TEXCOORD0;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
-			};
-
-			struct PackedVaryings
-			{
-				float4 positionCS : SV_POSITION;
-				float4 positionCSNoJitter : TEXCOORD0;
-				float4 previousPositionCSNoJitter : TEXCOORD1;
-				float4 ase_color : COLOR;
-				float4 ase_texcoord2 : TEXCOORD2;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
-				UNITY_VERTEX_OUTPUT_STEREO
-			};
-
-			CBUFFER_START(UnityPerMaterial)
-						#ifdef ASE_TRANSMISSION
-				float _TransmissionShadow;
-			#endif
-			#ifdef ASE_TRANSLUCENCY
-				float _TransStrength;
-				float _TransNormal;
-				float _TransScattering;
-				float _TransDirect;
-				float _TransAmbient;
-				float _TransShadow;
-			#endif
-			#ifdef ASE_TESSELLATION
-				float _TessPhongStrength;
-				float _TessValue;
-				float _TessMin;
-				float _TessMax;
-				float _TessEdgeLength;
-				float _TessMaxDisp;
-			#endif
-			CBUFFER_END
-
-			#ifdef SCENEPICKINGPASS
-				float4 _SelectionID;
-			#endif
-
-			#ifdef SCENESELECTIONPASS
-				int _ObjectId;
-				int _PassValue;
-			#endif
-
-			sampler2D _Noise_23;
-
-
-			
-			PackedVaryings VertexFunction( Attributes input  )
-			{
-				PackedVaryings output = (PackedVaryings)0;
-				UNITY_SETUP_INSTANCE_ID(input);
-				UNITY_TRANSFER_INSTANCE_ID(input, output);
-				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
-
-				output.ase_color = input.ase_color;
-				output.ase_texcoord2.xy = input.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				output.ase_texcoord2.zw = 0;
-
-				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					float3 defaultVertexValue = input.positionOS.xyz;
-				#else
-					float3 defaultVertexValue = float3(0, 0, 0);
-				#endif
-
-				float3 vertexValue = defaultVertexValue;
-
-				#ifdef ASE_ABSOLUTE_VERTEX_POS
-					input.positionOS.xyz = vertexValue;
-				#else
-					input.positionOS.xyz += vertexValue;
-				#endif
-
-				VertexPositionInputs vertexInput = GetVertexPositionInputs( input.positionOS.xyz );
-
-				#if defined(APLICATION_SPACE_WARP_MOTION)
-					// We do not need jittered position in ASW
-					output.positionCSNoJitter = mul(_NonJitteredViewProjMatrix, mul(UNITY_MATRIX_M, input.positionOS));;
-					output.positionCS = output.positionCSNoJitter;
-				#else
-					// Jittered. Match the frame.
-					output.positionCS = vertexInput.positionCS;
-					output.positionCSNoJitter = mul( _NonJitteredViewProjMatrix, mul( UNITY_MATRIX_M, input.positionOS));
-				#endif
-
-				float4 prevPos = ( unity_MotionVectorsParams.x == 1 ) ? float4( input.positionOld, 1 ) : input.positionOS;
-
-				#if _ADD_PRECOMPUTED_VELOCITY
-					prevPos = prevPos - float4(input.alembicMotionVector, 0);
-				#endif
-
-				output.previousPositionCSNoJitter = mul( _PrevViewProjMatrix, mul( UNITY_PREV_MATRIX_M, prevPos ) );
-				// removed in ObjectMotionVectors.hlsl found in unity 6000.0.23 and higher
-				//ApplyMotionVectorZBias( output.positionCS );
-				return output;
-			}
-
-			PackedVaryings vert ( Attributes input )
-			{
-				return VertexFunction( input );
-			}
-
-			half4 frag(	PackedVaryings input  ) : SV_Target
-			{
-				UNITY_SETUP_INSTANCE_ID(input);
-				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( input );
-
-				
-
-				float Alpha = step( input.ase_color.a , tex2D( _Noise_23, ( input.ase_texcoord2.xy * float2( 1,1 ) ) ).r );
-				float AlphaClipThreshold = 0.5;
-
-				#ifdef _ALPHATEST_ON
-					clip(Alpha - AlphaClipThreshold);
-				#endif
-
-				#if defined(LOD_FADE_CROSSFADE)
-					LODFadeCrossFade( input.positionCS );
-				#endif
-
-				#if defined(APLICATION_SPACE_WARP_MOTION)
-					return float4( CalcAswNdcMotionVectorFromCsPositions( input.positionCSNoJitter, input.previousPositionCSNoJitter ), 1 );
-				#else
-					return float4( CalcNdcMotionVectorFromCsPositions( input.positionCSNoJitter, input.previousPositionCSNoJitter ), 0, 0 );
-				#endif
-			}		
-			ENDHLSL
-		}
-		
 	}
 	
 	CustomEditor "UnityEditor.ShaderGraphLitGUI"
@@ -3513,7 +3331,7 @@ Node;AmplifyShaderEditor.PannerNode;16;-1408,48;Inherit;False;3;0;FLOAT2;1,1;Fal
 Node;AmplifyShaderEditor.RangedFloatNode;42;-177,86.5;Inherit;False;Constant;_Float1;Float 1;2;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;43;-150,192.5;Inherit;False;Constant;_Float2;Float 2;2;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;31;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphLitGUI;0;12;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;32;0,0;Float;False;True;-1;3;UnityEditor.ShaderGraphLitGUI;0;12;TrackSmoke;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;21;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;1;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;;0;0;Standard;45;Lighting Model;0;0;Workflow;1;0;Surface;0;0;  Refraction Model;0;0;  Blend;0;0;Two Sided;1;0;Alpha Clipping;1;0;  Use Shadow Threshold;0;0;Fragment Normal Space,InvertActionOnDeselection;0;0;Forward Only;0;0;Transmission;0;0;  Transmission Shadow;0.5,False,;0;Translucency;0;0;  Translucency Strength;1,False,;0;  Normal Distortion;0.5,False,;0;  Scattering;2,False,;0;  Direct;0.9,False,;0;  Ambient;0.1,False,;0;  Shadow;0.5,False,;0;Cast Shadows;1;0;Receive Shadows;1;0;Receive SSAO;1;0;Motion Vectors;1;0;  Add Precomputed Velocity;0;0;GPU Instancing;1;0;LOD CrossFade;1;0;Built-in Fog;1;0;_FinalColorxAlpha;0;0;Meta Pass;1;0;Override Baked GI;0;0;Extra Pre Pass;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Write Depth;0;0;  Early Z;0;0;Vertex Position,InvertActionOnDeselection;1;0;Debug Display;0;0;Clear Coat;0;0;0;11;False;True;True;True;True;True;True;True;True;True;True;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;32;0,0;Float;False;True;-1;3;UnityEditor.ShaderGraphLitGUI;0;12;TrackSmoke;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;21;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;1;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;1;LightMode=UniversalForward;False;False;0;;0;0;Standard;45;Lighting Model;0;0;Workflow;0;638696104223371834;Surface;0;0;  Refraction Model;0;0;  Blend;0;0;Two Sided;1;0;Alpha Clipping;1;0;  Use Shadow Threshold;0;0;Fragment Normal Space,InvertActionOnDeselection;0;0;Forward Only;0;0;Transmission;0;0;  Transmission Shadow;0.5,False,;0;Translucency;0;0;  Translucency Strength;1,False,;0;  Normal Distortion;0.5,False,;0;  Scattering;2,False,;0;  Direct;0.9,False,;0;  Ambient;0.1,False,;0;  Shadow;0.5,False,;0;Cast Shadows;1;0;Receive Shadows;1;0;Receive SSAO;0;638696104114104065;Motion Vectors;0;638696104120332537;  Add Precomputed Velocity;0;0;GPU Instancing;1;0;LOD CrossFade;1;0;Built-in Fog;1;0;_FinalColorxAlpha;0;0;Meta Pass;1;0;Override Baked GI;0;0;Extra Pre Pass;0;0;Tessellation;0;0;  Phong;0;0;  Strength;0.5,False,;0;  Type;0;0;  Tess;16,False,;0;  Min;10,False,;0;  Max;25,False,;0;  Edge Length;16,False,;0;  Max Displacement;25,False,;0;Write Depth;0;0;  Early Z;0;0;Vertex Position,InvertActionOnDeselection;1;0;Debug Display;0;0;Clear Coat;0;0;0;11;False;True;True;True;True;True;True;True;True;True;False;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;33;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphLitGUI;0;12;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=ShadowCaster;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;34;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphLitGUI;0;12;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;True;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;35;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphLitGUI;0;12;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Meta;0;4;Meta;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Lit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;False;0;;0;0;Standard;0;False;0
@@ -3530,8 +3348,7 @@ WireConnection;12;0;14;4
 WireConnection;12;1;11;1
 WireConnection;16;0;17;0
 WireConnection;32;0;14;0
-WireConnection;32;3;42;0
 WireConnection;32;4;43;0
 WireConnection;32;6;12;0
 ASEEND*/
-//CHKSM=E2C85F93424ED2BAFF44FC8732514FF3609674B1
+//CHKSM=70684A9EE2F3F625267651C42D688977556C0C88
