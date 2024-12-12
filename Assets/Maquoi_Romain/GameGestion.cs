@@ -19,28 +19,28 @@ public class GameGestion : MonoBehaviour
     public bool _mancheEnd;
 
 
-    public List<BlockDisplacement> _bloc = new();
+    public List<BlockDisplacement> _blocList = new();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _playerJoinScript = GetComponent<PlayerJoin>();
     }
-
+    // if je re meurt je ne me stop pas (refaire fin de manche)(bool a reset?)
     // Update is called once per frame  
     void Update()
     {
-        foreach (var x in _bloc)
+        foreach (var x in _blocList)
         {
           if(x == null)
             {
-               _bloc.Remove(x);
+               _blocList.Remove(x);
             }
         }
-        if (_bloc.Count == 0)
+        if (_blocList.Count == 0)
         {
-            print("list is empty");
+         _mancheEnd = false;
         }
-        // cree list avec bloc instancier, supprimer les blocs une fois poser et reactiver l input systeme , remettre le boolean de fin de manche en faux et revierifier le deplacement des joueurs.
+       
         if (_playerHasJoin == true)
         {         
             //Death detection
@@ -70,6 +70,7 @@ public class GameGestion : MonoBehaviour
                 _playerScript1._playerInput.actions.Disable();
                 _playerScript2._playerInput.actions.Disable();
             }
+
             if (_mancheEnd == false)
             {
                 _playerScript1._playerInput.actions.Enable();
