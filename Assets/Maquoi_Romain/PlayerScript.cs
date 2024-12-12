@@ -14,7 +14,8 @@ public class PlayerScript : MonoBehaviour
     public bool _isDead;
     public PlayerInput _playerInput;
 
-    public Vector2 _blocDisplacementDirection;
+    private Vector2 _blocDisplacementDirection;
+    public Vector2 BlocDisplacementDirection => _blocDisplacementDirection;
 
 
     public BlockDisplacement _blockDisplacement;
@@ -23,6 +24,11 @@ public class PlayerScript : MonoBehaviour
     public GameObject _placableBloc;
 
     public bool _placeBloc;
+
+
+
+    public double timestamp;
+
     private void Start()
     {
         _placeBloc=false;
@@ -33,7 +39,9 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         
-        print(_playerInput.actions.FindAction("look").ReadValue<Vector2>() + "value in read");
+        
+        //print(_playerInput.actions.FindActionMap("Player").FindAction("Look").ReadValue<Vector2>() + "value in read");
+        
         //move
         this.transform.position = transform.position + (_movement * _movementSpeed * Time.deltaTime);
         //life
@@ -45,9 +53,9 @@ public class PlayerScript : MonoBehaviour
         {
             _didInstance = true;
             GameObject bloc = Instantiate(_placableBloc, new Vector3(transform.position.x, 00, transform.position.z), transform.rotation);
-            _gameGestion._bloc.Add(bloc.GetComponent<BlockDisplacement>());
+            _blockDisplacement = bloc.GetComponent<BlockDisplacement>();
+            _gameGestion._blocList.Add(_blockDisplacement);
             bloc.GetComponent<BlockDisplacement>()._playerScript = this;
-
 
         }
     }
@@ -65,12 +73,18 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnLook(InputValue value)
     {
-        Vector2 selectionInputValue = value.Get<Vector2>();
-        //_blockDisplacement.BlockDisplacementDirection = selectionInputValue;
-        _blocDisplacementDirection = selectionInputValue;
-        print(_blocDisplacementDirection + "value in player");
-       
+        if (Time.timeAsDouble == timestamp)
+            return;
+
+        _blocDisplacementDirection = value.Get<Vector2>();
+
+        timestamp = Time.timeAsDouble;
+
+
+        //print("ONLOOK : " + Time.timeAsDouble);
+        print(_playerNumber +  " : " + _blocDisplacementDirection + "value in player");
     }
+
     private void OnInteract()
     {
         print("i clic on Y"+_playerNumber);
