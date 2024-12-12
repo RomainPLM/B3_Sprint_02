@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +17,9 @@ public class GameGestion : MonoBehaviour
     public int _player2WinAmmount;
 
     public bool _mancheEnd;
+
+
+    public List<BlockDisplacement> _bloc = new();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,8 +29,20 @@ public class GameGestion : MonoBehaviour
     // Update is called once per frame  
     void Update()
     {
-        if (_playerHasJoin == true)
+        foreach (var x in _bloc)
         {
+          if(x == null)
+            {
+               _bloc.Remove(x);
+            }
+        }
+        if (_bloc.Count == 0)
+        {
+            print("list is empty");
+        }
+        // cree list avec bloc instancier, supprimer les blocs une fois poser et reactiver l input systeme , remettre le boolean de fin de manche en faux et revierifier le deplacement des joueurs.
+        if (_playerHasJoin == true)
+        {         
             //Death detection
             if (_playerScript1._isDead == true)
             {
@@ -71,8 +88,13 @@ public class GameGestion : MonoBehaviour
                 _playerScript2.gameObject.transform.rotation = _playerJoinScript._spawnPoint[_playerScript2._playerNumber].rotation;
 
                 //Action For bloc
-                _playerScript1._didInstance=false;
-                _playerScript2._didInstance = false;
+                // _playerScript1._didInstance=false;
+                //   _playerScript2._didInstance = false;
+                _playerScript1._playerInput.actions.FindAction("Look").Enable();
+                _playerScript2._playerInput.actions.FindAction("Look").Enable();
+
+                _playerScript1._playerInput.actions.FindAction("Interact").Enable();
+                _playerScript2._playerInput.actions.FindAction("Interact").Enable();
 
             }
         }

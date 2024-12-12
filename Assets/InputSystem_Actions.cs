@@ -902,6 +902,65 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""BlocPosition"",
+            ""id"": ""4eeb1f79-48e9-445f-b669-3f17e45d4a06"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f546fd1-2813-4e15-b560-cf011a0e6692"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""c97523e1-8ecf-4502-9c5f-42dc8e7aadc2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cfc75c5a-8861-46a7-9242-f5baaf608ef2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb6763ff-4126-43a2-82a6-f0654450f643"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66682374-2053-48a9-91d3-2a04593c10df"",
+                    ""path"": ""<Joystick>/{Hatswitch}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -990,12 +1049,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // BlocPosition
+        m_BlocPosition = asset.FindActionMap("BlocPosition", throwIfNotFound: true);
+        m_BlocPosition_Newaction = m_BlocPosition.FindAction("New action", throwIfNotFound: true);
+        m_BlocPosition_Look = m_BlocPosition.FindAction("Look", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_BlocPosition.enabled, "This will cause a leak and performance issues, InputSystem_Actions.BlocPosition.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -1281,6 +1345,60 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // BlocPosition
+    private readonly InputActionMap m_BlocPosition;
+    private List<IBlocPositionActions> m_BlocPositionActionsCallbackInterfaces = new List<IBlocPositionActions>();
+    private readonly InputAction m_BlocPosition_Newaction;
+    private readonly InputAction m_BlocPosition_Look;
+    public struct BlocPositionActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+        public BlocPositionActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_BlocPosition_Newaction;
+        public InputAction @Look => m_Wrapper.m_BlocPosition_Look;
+        public InputActionMap Get() { return m_Wrapper.m_BlocPosition; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BlocPositionActions set) { return set.Get(); }
+        public void AddCallbacks(IBlocPositionActions instance)
+        {
+            if (instance == null || m_Wrapper.m_BlocPositionActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BlocPositionActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+        }
+
+        private void UnregisterCallbacks(IBlocPositionActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+        }
+
+        public void RemoveCallbacks(IBlocPositionActions instance)
+        {
+            if (m_Wrapper.m_BlocPositionActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IBlocPositionActions instance)
+        {
+            foreach (var item in m_Wrapper.m_BlocPositionActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_BlocPositionActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public BlocPositionActions @BlocPosition => new BlocPositionActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1350,5 +1468,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IBlocPositionActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
 }
