@@ -4,6 +4,7 @@ public class IEM : MonoBehaviour
 {
     public float speed = 10f;
     public int maxBounces = 3;
+    public GameObject IEMEplosion;
     
 
     public int currentBounces = 0;
@@ -57,5 +58,10 @@ public class IEM : MonoBehaviour
                 }
             
         }
+    }
+
+    public void OnDestroy()
+    {
+        Instantiate(IEMEplosion, transform.position, transform.rotation);
     }
 }

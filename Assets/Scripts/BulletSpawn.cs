@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BulletSpawn : MonoBehaviour
 {
-    public GameObject BouncyBullet;
     public Transform SpawnPoint;
+    public GameObject[] Bullets;
+    public int WhichBullet;
+    
 
     void Update()
     {
@@ -13,7 +16,7 @@ public class BulletSpawn : MonoBehaviour
 
     void OnJump()
     {
-        Instantiate(BouncyBullet, SpawnPoint.position, SpawnPoint.rotation);
+        Instantiate(Bullets[WhichBullet], SpawnPoint.position, SpawnPoint.rotation);
         print(" jump");
     }
 }

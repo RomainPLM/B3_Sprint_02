@@ -4,6 +4,7 @@ public class BouncyRocket : MonoBehaviour
 {
     public float speed = 10f;
     public int maxBounces = 3;
+    public GameObject bounceExplosion;
     
 
     public int currentBounces = 0;
@@ -48,6 +49,7 @@ public class BouncyRocket : MonoBehaviour
                 direction = Vector3.Reflect(direction, normal).normalized;
 
                 transform.position = hit.point;
+                Instantiate(bounceExplosion, transform.position, transform.rotation);
 
                 currentBounces++;
 
