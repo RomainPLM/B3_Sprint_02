@@ -1,17 +1,13 @@
 #ifndef ToonShading
 #define ToonShading
 
-void Toon_float(float3 Normal, float3 LightDir, float3 ViewDir, float4 BaseColor, float Smoothness, out float3 OutColor)
+void Toon_float(float3 Normal, float3 LightDir, float3 LightCol, float3 AdditionalLight,
+               float3 ViewDir, float3 BaseColor, float2 LightAttenuation,
+               out float3 OutColor)
 {
-    float3 H = normalize(ViewDir + (-LightDir));
-    float NdotL = dot(-LightDir, Normal);
-    float diffuse = smoothstep(-.05, .05, NdotL);
-    //float Ndoth = dot(Normal, H);
-    //float e = exp2(Smoothness * 12);
-    //float diffuse = step(-.99, NdotL) + step(-.75, NdotL) + step(-5, NdotL) + step(-.25, NdotL) + step(0, NdotL) + step(.25, NdotL) + step(.5, NdotL) + step(.75, NdotL) + step(.99, NdotL);
-    //float specular = smoothstep(.4, .6, pow(Ndoth, e)) * diffuse;
-    
-    OutColor = BaseColor * diffuse /*+ specular*/ + BaseColor*.1;
-}
+    float NdotL = saturate(dot(Normal, LightDir));
+    float diffuse = smoothstep(LightAttenuation.x, LightAttenuation.y, NdotL);
 
+    OutColor = BaseColor * diffuse * (LightCol + AdditionalLight) + BaseColor * .1;
+}
 #endif
