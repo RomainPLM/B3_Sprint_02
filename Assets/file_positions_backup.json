@@ -30,7 +30,12 @@
         "Assets/Unsorted\\chocolat.fbx",
         "Assets/Unsorted\\chocolat_standardSurface1_BaseMap.png",
         "Assets/Unsorted\\chocolat_standardSurface1_MaskMap.png",
-        "Assets/Unsorted\\chocolat_standardSurface1_Normal.png"
+        "Assets/Unsorted\\chocolat_standardSurface1_Normal.png",
+        "Assets/Unsorted\\cup_plate.fbx",
+        "Assets/Unsorted\\cup_plate_standardSurface1_BaseMap.png",
+        "Assets/Unsorted\\cup_plate_standardSurface1_MaskMap.png",
+        "Assets/Unsorted\\cup_plate_standardSurface1_Normal.png",
+        "Assets/Unsorted\\cup_plate.fbx"
     ],
     "newPaths": [
         "Assets/Materials\\OutlineTest.mat",
@@ -63,6 +68,11 @@
         "Assets/Meshes\\chocolat.fbx",
         "Assets/Textures\\chocolat_standardSurface1_BaseMap.png",
         "Assets/Textures\\chocolat_standardSurface1_MaskMap.png",
-        "Assets/Textures\\chocolat_standardSurface1_Normal.png"
+        "Assets/Textures\\chocolat_standardSurface1_Normal.png",
+        "Assets/Meshes\\cup_plate.fbx",
+        "Assets/Textures\\cup_plate_standardSurface1_BaseMap.png",
+        "Assets/Textures\\cup_plate_standardSurface1_MaskMap.png",
+        "Assets/Textures\\cup_plate_standardSurface1_Normal.png",
+        "Assets/Meshes\\cup_plate.fbx"
     ]
 }
