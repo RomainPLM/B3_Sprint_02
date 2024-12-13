@@ -7,15 +7,14 @@ using UnityEngine.InputSystem;
 public class PlayerScript : MonoBehaviour
 {
     private Vector2 _playerPosition;
-    private float _blocDisplacementDirectionX;
     public Vector3 _movement;
     public float _movementSpeed;
     public int _playerNumber;
     public bool _isDead;
     public PlayerInput _playerInput;
 
-    private Vector2 _blocDisplacementDirection;
-    public Vector2 BlocDisplacementDirection => _blocDisplacementDirection;
+    public Vector2 _blocDisplacementDirection1;
+    public Vector2 _blocDisplacementDirection2;
 
 
     public BlockDisplacement _blockDisplacement;
@@ -27,7 +26,7 @@ public class PlayerScript : MonoBehaviour
 
 
 
-    public double timestamp;
+    //public double timestamp;
 
     private void Start()
     {
@@ -38,10 +37,48 @@ public class PlayerScript : MonoBehaviour
     }
     private void Update()
     {
-        
-        
+
+
+
+        if (Input.GetAxisRaw("VerticalJoy1") > 0.15 || Input.GetAxisRaw("VerticalJoy1") < -0.15)
+        {
+            _blocDisplacementDirection1.x = -Input.GetAxisRaw("VerticalJoy1");
+            //  print(_blocDisplacementDirection + "VJ1");
+        }
+        else
+        {
+            _blocDisplacementDirection1.x = 0;
+        }
+        if (Input.GetAxisRaw("HorizontalJoy1") > 0.15 ||  Input.GetAxisRaw("HorizontalJoy1") < -0.15)
+        {
+            _blocDisplacementDirection1.y = -Input.GetAxisRaw("HorizontalJoy1");
+            //  print(_blocDisplacementDirection + "HJ1");
+        }
+        else
+        {
+            _blocDisplacementDirection1.y = 0;
+        }
+        if (Input.GetAxisRaw("VerticalJoy2")  > 0.15 || Input.GetAxisRaw("VerticalJoy2") < -0.15)
+        {
+            _blocDisplacementDirection2.x = -Input.GetAxisRaw("VerticalJoy2");
+            //  print(_blocDisplacementDirection + "VJ2");
+        }
+        else
+        {
+            _blocDisplacementDirection2.x = 0;
+        }
+        if (Input.GetAxisRaw("HorizontalJoy2") > 0.15 || Input.GetAxisRaw("HorizontalJoy2") < -0.15)
+        {
+            _blocDisplacementDirection2.y = -Input.GetAxisRaw("HorizontalJoy2");
+            //  print(_blocDisplacementDirection + "HJ2");
+        }
+        else
+        {
+            _blocDisplacementDirection2.y = 0;
+        }
+
         //print(_playerInput.actions.FindActionMap("Player").FindAction("Look").ReadValue<Vector2>() + "value in read");
-        
+
         //move
         this.transform.position = transform.position + (_movement * _movementSpeed * Time.deltaTime);
         //life
@@ -73,16 +110,12 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnLook(InputValue value)
     {
-        if (Time.timeAsDouble == timestamp)
-            return;
 
-        _blocDisplacementDirection = value.Get<Vector2>();
-
-        timestamp = Time.timeAsDouble;
+      
 
 
-        //print("ONLOOK : " + Time.timeAsDouble);
-        print(_playerNumber +  " : " + _blocDisplacementDirection + "value in player");
+
+
     }
 
     private void OnInteract()
