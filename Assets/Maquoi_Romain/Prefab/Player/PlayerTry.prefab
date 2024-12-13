@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665660225174509639}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.007, y: 0.442, z: -0.587}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.0069999695, y: 0.44200003, z: -0.587}
   m_LocalScale: {x: 0.33, y: 0.1, z: 0.31}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6705994713995862370}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &3840170673042702383
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 802411907732156879}
   - component: {fileID: 2171598786936300843}
   - component: {fileID: 5500755202587340474}
+  - component: {fileID: -5028902731010737107}
   m_Layer: 0
   m_Name: PlayerTry
   m_TagString: Untagged
@@ -705,10 +706,13 @@ MonoBehaviour:
   _playerNumber: 0
   _isDead: 0
   _playerInput: {fileID: 0}
-  _blocDisplacementDirection: {x: 0, y: 0}
+  _blocDisplacementDirection1: {x: 0, y: 0}
+  _blocDisplacementDirection2: {x: 0, y: 0}
   _blockDisplacement: {fileID: 0}
   _gameGestion: {fileID: 0}
+  _didInstance: 0
   _placableBloc: {fileID: 2628017235863200297, guid: d08355743fb6163418202cb47749c627, type: 3}
+  _placeBloc: 0
 --- !u!54 &5500755202587340474
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -736,3 +740,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5028902731010737107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7110016912892707139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b991eca35e52b4fba4190216b86b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnPoint: {fileID: 7730928951663158416}
+  Bullets:
+  - {fileID: 8140132983338092422, guid: 93aaedbf017f2f1498a44e79d102e1bb, type: 3}
+  - {fileID: 7491994395150293625, guid: 17b427602a130424d9b7e1e9dddb16af, type: 3}
+  - {fileID: 4032595860637841310, guid: 88d2166f9cec19040b58bbef59bd62c7, type: 3}
+  - {fileID: 3897950038335948227, guid: ebb62f0fe7c26c44981ddf218d90229d, type: 3}
+  - {fileID: 531926842108977702, guid: d5b74de7031ae7143b945652d460f269, type: 3}
+  WhichBullet: 0
