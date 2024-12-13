@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 public class BlockDisplacement : MonoBehaviour
 {
-  
+
 
     public float _blocDisplacementSize;
     public float _blocDisplacementTimeBetween = 0.5f;
@@ -28,50 +28,33 @@ public class BlockDisplacement : MonoBehaviour
 
     private void Update()
     {
+        print("placable" + _playerScript._playerNumber);
 
 
-     
         //if (Time.timeAsDouble == _playerScript.timestamp)
         //    return;
 
-
-        //  print("UPDATE : block movement value" + _playerScript.BlocDisplacementDirection);
-        //sDebug.Log(_playerScript, this.gameObject);
-
-
-        //if (_placable == true)
-        //{
-        //    _blocIsPosed = true;
-        //    _renderer.material.color = Color.gray;
-        //    Destroy(this);
-        //print(_playerScript.BlocDisplacementDirection + " In block");
-        if (_playerScript._placeBloc == true)
+        if (_placable == true && _playerScript._placeBloc == true)
         {
-            _blocIsPosed = true;
-            _renderer.material.color = Color.gray;
-            Destroy(this);
+            if (_playerScript._placeBloc == true)
+            {
+                
+                _blocIsPosed = true;
+                _renderer.material.color = Color.gray;
+                Destroy(this);
+            }
         }
-    //}
-    //private void FixedUpdate()
-    //{
-      
-        // print(_playerScript+"player script");
-    //    print(_playerScript._playerNumber);
-        //print(_timer+"timer");
-
-        //regler vitesse deplacement
         if (_blocDisplacementEnabled == true)
         {
-            if (_playerScript._playerNumber == 1)
+            if (_playerScript._playerNumber == 0)
             {
                 _blocDisplacementDirection = _playerScript._blocDisplacementDirection1;
             }
-            else if(_playerScript._playerNumber == 0)
+            else if (_playerScript._playerNumber == 1)
             {
                 _blocDisplacementDirection = _playerScript._blocDisplacementDirection2;
             }
-            // print("le block peut bouger");
-        
+
             if (_blocDisplacementDirection.x < -0.25f)
             {
                 this.gameObject.transform.position = new Vector3((this.gameObject.transform.position.x - _blocDisplacementSize), this.transform.position.y, this.transform.position.z);
@@ -114,7 +97,7 @@ public class BlockDisplacement : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer != 6) { _renderer.material.color = Color.red;/* print(other.gameObject);*/ _placable = false; }
+        if (other.gameObject.layer != 6) { _renderer.material.color = Color.red;/* print(other.gameObject);*/ _placable = false; _playerScript._placeBloc = false; }
     }
     private void OnTriggerExit(Collider other)
     {

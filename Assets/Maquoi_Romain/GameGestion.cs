@@ -29,20 +29,25 @@ public class GameGestion : MonoBehaviour
     // Update is called once per frame  
     void Update()
     {
-        foreach (var x in _blocList)
-        {
-          if(x == null)
-            {
-               _blocList.Remove(x);
-            }
-        }
-        if (_blocList.Count == 0)
-        {
-         _mancheEnd = false;
-        }
-       
+
+
         if (_playerHasJoin == true)
-        {         
+        {
+            foreach (var x in _blocList)
+            {
+                if (x == null)
+                {
+                    _blocList.Remove(x);
+                }
+            }
+            if (_blocList.Count == 0)
+            {
+                _mancheEnd = false;
+                _playerScript1._didInstance = false;
+                _playerScript2._didInstance = false;
+                _playerScript1._placeBloc = false;
+                _playerScript2._placeBloc = false;
+            }
             //Death detection
             if (_playerScript1._isDead == true)
             {
@@ -78,6 +83,7 @@ public class GameGestion : MonoBehaviour
             }
             else
             {
+
                 //Action on player
                 _playerScript1._playerInput.actions.Disable();
                 _playerScript2._playerInput.actions.Disable();
@@ -99,7 +105,7 @@ public class GameGestion : MonoBehaviour
 
             }
         }
-        
+
     }
     void OnPlayerJoined(PlayerInput playerInput)
     {

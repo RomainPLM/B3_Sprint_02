@@ -88,6 +88,7 @@ public class PlayerScript : MonoBehaviour
         //}
         if (_gameGestion._mancheEnd == true && _didInstance == false)
         {
+           
             _didInstance = true;
             GameObject bloc = Instantiate(_placableBloc, new Vector3(transform.position.x, 00, transform.position.z), transform.rotation);
             _blockDisplacement = bloc.GetComponent<BlockDisplacement>();
@@ -108,16 +109,6 @@ public class PlayerScript : MonoBehaviour
                                                                                      //}
 
     }
-    private void OnLook(InputValue value)
-    {
-
-      
-
-
-
-
-    }
-
     private void OnInteract()
     {
         print("i clic on Y"+_playerNumber);
