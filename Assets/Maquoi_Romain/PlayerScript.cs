@@ -37,8 +37,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void Update()
     {
-
-
+       
 
         if (Input.GetAxisRaw("VerticalJoy1") > 0.15 || Input.GetAxisRaw("VerticalJoy1") < -0.15)
         {

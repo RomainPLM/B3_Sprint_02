@@ -9,36 +9,49 @@ public class PlayerJoin : MonoBehaviour
     private int _numPlayers;
     [SerializeField] InputAction _joinAction;
     private PlayerInputManager _playerInputManager;
+    private bool _connected = false;
+    public string _controllers;
     private void Start()
     {
         _playerInputManager = GetComponent<PlayerInputManager>();
         _joinAction.Enable();
         _numPlayers = 0;
     }
+
+
+    void Awake()
+    {
+        _controllers = Input.GetJoystickNames()[0];
+    }
     //automatically called when player joins the game session
     void OnPlayerJoined(PlayerInput playerInput)
     {
+
         Debug.Log("Spawn Position: " + _spawnPoint[_numPlayers].position);
+
         playerInput.gameObject.transform.position = _spawnPoint[_numPlayers].position;
         playerInput.gameObject.transform.rotation = _spawnPoint[_numPlayers].rotation;
 
         if (_numPlayers == 0)
         {
+          // if(_controllers ==)
             playerInput.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
             playerInput.gameObject.GetComponent<PlayerScript>()._playerNumber = _numPlayers;
+
             //donner script a gameobject + dans ce script faire event qui detecte la mort pour donner point
             // mettre les gamesobject dans une liste
         }
         else if (_numPlayers == 1)
         {
+            Debug.Log(Input.GetJoystickNames()[1] + "second one pressed");
             playerInput.gameObject.GetComponent<Renderer>().material.color = Color.blue;
             playerInput.gameObject.GetComponent<PlayerScript>()._playerNumber = _numPlayers;
         }
-        
+
 
         _numPlayers++;
 
-        if (_numPlayers >=2)
+        if (_numPlayers >= 2)
         {
             _playerInputManager.enabled = false;
         }
