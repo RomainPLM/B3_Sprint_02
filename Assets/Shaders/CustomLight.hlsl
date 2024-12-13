@@ -1,11 +1,12 @@
 #ifndef CUSTOMLIGHT_INCLUDE
 #define CUSTOMLIGHT_INCLUDE
 
-void MainLight_float(out float3 Direction, out float3 Color)
+void MainLight_float(out float3 Direction, out float3 Color/*,out float Attenuation*/)
 {
     Light light = GetMainLight();
     Direction = light.direction;
     Color = light.color;
+    //Attenuation = light.distanceAttenuation;
 }
 
 void AdditionalLight_float(float3 WorldPos, float3 WorldNormal, float2 LightAttenuation, out float3 Color)
