@@ -26,7 +26,11 @@
         "Assets/Unsorted\\cuillere.fbx",
         "Assets/Unsorted\\cuillere_standardSurface1_BaseMap.tga",
         "Assets/Unsorted\\cuillere_standardSurface1_MaskMap.tga",
-        "Assets/Unsorted\\cuillere_standardSurface1_Normal.tga"
+        "Assets/Unsorted\\cuillere_standardSurface1_Normal.tga",
+        "Assets/Unsorted\\chocolat.fbx",
+        "Assets/Unsorted\\chocolat_standardSurface1_BaseMap.png",
+        "Assets/Unsorted\\chocolat_standardSurface1_MaskMap.png",
+        "Assets/Unsorted\\chocolat_standardSurface1_Normal.png"
     ],
     "newPaths": [
         "Assets/Materials\\OutlineTest.mat",
@@ -55,6 +59,10 @@
         "Assets/Meshes\\cuillere.fbx",
         "Assets/Textures\\cuillere_standardSurface1_BaseMap.tga",
         "Assets/Textures\\cuillere_standardSurface1_MaskMap.tga",
-        "Assets/Textures\\cuillere_standardSurface1_Normal.tga"
+        "Assets/Textures\\cuillere_standardSurface1_Normal.tga",
+        "Assets/Meshes\\chocolat.fbx",
+        "Assets/Textures\\chocolat_standardSurface1_BaseMap.png",
+        "Assets/Textures\\chocolat_standardSurface1_MaskMap.png",
+        "Assets/Textures\\chocolat_standardSurface1_Normal.png"
     ]
 }
