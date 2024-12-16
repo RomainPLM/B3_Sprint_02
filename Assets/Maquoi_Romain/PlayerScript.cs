@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,7 +26,6 @@ public class PlayerScript : MonoBehaviour
     public bool _placeBloc;
 
 
-
     //public double timestamp;
 
     private void Start()
@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetAxisRaw("VerticalJoy1") > 0.15 || Input.GetAxisRaw("VerticalJoy1") < -0.15)
         {
             _blocDisplacementDirection1.x = -Input.GetAxisRaw("VerticalJoy1");
-            //  print(_blocDisplacementDirection + "VJ1");
+    
         }
         else
         {
@@ -51,7 +51,6 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetAxisRaw("HorizontalJoy1") > 0.15 ||  Input.GetAxisRaw("HorizontalJoy1") < -0.15)
         {
             _blocDisplacementDirection1.y = -Input.GetAxisRaw("HorizontalJoy1");
-            //  print(_blocDisplacementDirection + "HJ1");
         }
         else
         {
@@ -60,7 +59,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetAxisRaw("VerticalJoy2")  > 0.15 || Input.GetAxisRaw("VerticalJoy2") < -0.15)
         {
             _blocDisplacementDirection2.x = -Input.GetAxisRaw("VerticalJoy2");
-            //  print(_blocDisplacementDirection + "VJ2");
+
         }
         else
         {
@@ -69,27 +68,23 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetAxisRaw("HorizontalJoy2") > 0.15 || Input.GetAxisRaw("HorizontalJoy2") < -0.15)
         {
             _blocDisplacementDirection2.y = -Input.GetAxisRaw("HorizontalJoy2");
-            //  print(_blocDisplacementDirection + "HJ2");
+            
         }
         else
         {
             _blocDisplacementDirection2.y = 0;
         }
 
-        //print(_playerInput.actions.FindActionMap("Player").FindAction("Look").ReadValue<Vector2>() + "value in read");
-
-        //move
+  
         this.transform.position = transform.position + (_movement * _movementSpeed * Time.deltaTime);
-        //life
-        //if (_isDead == true)
-        //{
 
-        //}
         if (_gameGestion._mancheEnd == true && _didInstance == false)
         {
            
             _didInstance = true;
-            GameObject bloc = Instantiate(_placableBloc, new Vector3(transform.position.x, 00, transform.position.z), transform.rotation);
+            var randomInList =  Random.Range(0, _gameGestion._blocTypes.Count );
+            GameObject bloc = Instantiate(_gameGestion._blocTypes[/*randomInList*/0], new Vector3(transform.position.x, 00, transform.position.z),Quaternion.identity);
+           // GameObject bloc = Instantiate(_placableBloc, new Vector3(transform.position.x, 00, transform.position.z), transform.rotation);
             _blockDisplacement = bloc.GetComponent<BlockDisplacement>();
             _gameGestion._blocList.Add(_blockDisplacement);
             bloc.GetComponent<BlockDisplacement>()._playerScript = this;
@@ -111,8 +106,9 @@ public class PlayerScript : MonoBehaviour
     private void OnInteract()
     {
         print("i clic on Y"+_playerNumber);
-        _placeBloc = true;
+       _placeBloc = true;
 
 
     }
+
 }
