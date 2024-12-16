@@ -20,6 +20,8 @@ public class GameGestion : MonoBehaviour
 
 
     public List<BlockDisplacement> _blocList = new();
+
+    public List<GameObject> _blocTypes = new();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

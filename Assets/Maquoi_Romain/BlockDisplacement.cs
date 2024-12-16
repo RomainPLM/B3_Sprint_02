@@ -28,7 +28,7 @@ public class BlockDisplacement : MonoBehaviour
 
     private void Update()
     {
-        print("placable" + _playerScript._playerNumber);
+     
 
 
         //if (Time.timeAsDouble == _playerScript.timestamp)
@@ -49,37 +49,44 @@ public class BlockDisplacement : MonoBehaviour
             if (_playerScript._playerNumber == 0)
             {
                 _blocDisplacementDirection = _playerScript._blocDisplacementDirection1;
+                //print(_blocDisplacementDirection + "direction 1");
             }
             else if (_playerScript._playerNumber == 1)
             {
                 _blocDisplacementDirection = _playerScript._blocDisplacementDirection2;
+                //print(_blocDisplacementDirection+"direction 2");
             }
 
             if (_blocDisplacementDirection.x < -0.25f)
             {
                 this.gameObject.transform.position = new Vector3((this.gameObject.transform.position.x - _blocDisplacementSize), this.transform.position.y, this.transform.position.z);
-                print("is moving actually");
+               // print("is moving actually + " + _blocDisplacementDirection);
+               print(this.gameObject.transform.position);
                 _blocDisplacementEnabled = false;
                 _timer = 0;
             }
             else if (_blocDisplacementDirection.x > 0.25f)
             {
                 this.gameObject.transform.position = new Vector3((this.gameObject.transform.position.x + _blocDisplacementSize), this.transform.position.y, this.transform.position.z);
-                print("is moving actually");
+                //print("is moving actually + " + _blocDisplacementDirection);
+                print(this.gameObject.transform.position);
                 _blocDisplacementEnabled = false;
                 _timer = 0;
             }
             else if (_blocDisplacementDirection.y < -0.25f)
             {
                 this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.transform.position.y, (this.transform.position.z - _blocDisplacementSize));
-                print("is moving actually");
+                //print("is moving actually + " + _blocDisplacementDirection);
+                print(this.gameObject.transform.position);
                 _blocDisplacementEnabled = false;
                 _timer = 0;
             }
             else if (_blocDisplacementDirection.y > 0.25f)
             {
                 this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.transform.position.y, (this.transform.position.z + _blocDisplacementSize));
-                print("is moving actually");
+                //print("is moving actually + " + _blocDisplacementDirection);
+                print(this.gameObject.transform.position);
+
                 _blocDisplacementEnabled = false;
                 _timer = 0;
             }
