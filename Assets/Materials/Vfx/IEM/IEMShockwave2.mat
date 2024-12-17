@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-374701719717799544
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lightning 1 1
-  m_Shader: {fileID: -6465566751694194690, guid: 56a44692d824e6a4e8a84422f7227db4, type: 3}
+  m_Name: IEMShockwave2
+  m_Shader: {fileID: -6465566751694194690, guid: 3b0b53cf8718262488eb5a3db37d0eee, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,8 +37,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: e62a8c318635341448cb186ea324ef9c, type: 3}
+    - _SampleTexture2D_2fad796e545f4c43bf0f87ddcacd181b_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 1f9a6cbb2015e01428fbd80b97c59efd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture:
+        m_Texture: {fileID: 2800000, guid: 088f1f6aba831da41bd53928f4e7eaff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -42,25 +59,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorIntensity: 10
-    - _Distort: 1
-    - _LightningNbr: 5.86
+    - _Intensity: 10
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Test: 6.16
-    m_Colors: []
+    m_Colors:
+    - _CenterColor: {r: 0.12156861, g: 0.21062534, b: 0.8392157, a: 0}
+    - _OuterColor: {r: 0.3250267, g: 0.8301887, b: 0.8301887, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &5632841420588976368
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 9
