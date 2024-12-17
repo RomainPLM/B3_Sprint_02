@@ -75,7 +75,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: a328c809cf30a514a95bf393c12fe11a, type: 3}
+        m_Texture: {fileID: 2800000, guid: b7b489f54be3aab46b5ec00424b805d2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -116,7 +116,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Intencity: 5.64
+    - _Intencity: 21.38
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
