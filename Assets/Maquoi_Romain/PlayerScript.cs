@@ -110,5 +110,11 @@ public class PlayerScript : MonoBehaviour
 
 
     }
-
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.layer == _bulletLayer)
+    //    {
+    //        _isDead = true;
+    //    }
+    //}
 }
