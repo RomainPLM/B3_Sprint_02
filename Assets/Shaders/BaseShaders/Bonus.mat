@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3756870432316681989
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IEMAftermath
-  m_Shader: {fileID: -6465566751694194690, guid: 456e4db7c1f06ca4282539239114517a, type: 3}
+  m_Name: Bonus
+  m_Shader: {fileID: -6465566751694194690, guid: bccce6375a0066e4fa7548284870361c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -16,7 +29,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2994
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -24,12 +37,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_0f437c86a6ba43759bff95fcf79b3b15_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 65bdeb73197b2e84b82fef2882ab1175, type: 3}
+    - _BaseColor:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 65bdeb73197b2e84b82fef2882ab1175, type: 3}
+    - _Roughness:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -47,23 +60,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _QueueControl: 0
-    - _QueueOffset: -6
+    - _QueueOffset: 0
     m_Colors:
-    - _CenterColor: {r: 0.09803922, g: 0.17403702, b: 0.90588236, a: 1}
-    - _OuterColor: {r: 0.763152, g: 4.498156, b: 5.9921565, a: 1}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _AddLAttenu: {r: -0.05, g: 0.05, b: 0, a: 0}
+    - _MainLAttenu: {r: -0.05, g: 0.05, b: 0, a: 0}
+    - _TestCol: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &957537891624192586
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 9
