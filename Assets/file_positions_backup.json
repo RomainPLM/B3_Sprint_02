@@ -35,7 +35,15 @@
         "Assets/Unsorted\\cup_plate_standardSurface1_BaseMap.png",
         "Assets/Unsorted\\cup_plate_standardSurface1_MaskMap.png",
         "Assets/Unsorted\\cup_plate_standardSurface1_Normal.png",
-        "Assets/Unsorted\\cup_plate.fbx"
+        "Assets/Unsorted\\cup_plate.fbx",
+        "Assets/Unsorted\\pancake.fbx",
+        "Assets/Unsorted\\pancake_DefaultMaterial_BaseMap.png",
+        "Assets/Unsorted\\pancake_DefaultMaterial_MaskMap.png",
+        "Assets/Unsorted\\pancake_DefaultMaterial_Normal.png",
+        "Assets/Unsorted\\bouteille.fbx",
+        "Assets/Unsorted\\bouteille_DefaultMaterial_BaseMap.png",
+        "Assets/Unsorted\\bouteille_DefaultMaterial_MaskMap.png",
+        "Assets/Unsorted\\bouteille_DefaultMaterial_Normal.png"
     ],
     "newPaths": [
         "Assets/Materials\\OutlineTest.mat",
@@ -73,6 +81,14 @@
         "Assets/Textures\\cup_plate_standardSurface1_BaseMap.png",
         "Assets/Textures\\cup_plate_standardSurface1_MaskMap.png",
         "Assets/Textures\\cup_plate_standardSurface1_Normal.png",
-        "Assets/Meshes\\cup_plate.fbx"
+        "Assets/Meshes\\cup_plate.fbx",
+        "Assets/Meshes\\pancake.fbx",
+        "Assets/Textures\\pancake_DefaultMaterial_BaseMap.png",
+        "Assets/Textures\\pancake_DefaultMaterial_MaskMap.png",
+        "Assets/Textures\\pancake_DefaultMaterial_Normal.png",
+        "Assets/Meshes\\bouteille.fbx",
+        "Assets/Textures\\bouteille_DefaultMaterial_BaseMap.png",
+        "Assets/Textures\\bouteille_DefaultMaterial_MaskMap.png",
+        "Assets/Textures\\bouteille_DefaultMaterial_Normal.png"
     ]
 }
