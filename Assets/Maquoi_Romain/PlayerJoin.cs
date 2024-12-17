@@ -30,12 +30,10 @@ public class PlayerJoin : MonoBehaviour
     }
     private void Update()
     {
-       
-        
-
-
-      
-
+        //_gamepads = Gamepad.all.ToArray();
+        //print(_gamepads.Length);
+        //print(_gamepads[0] + "connected first");
+        //print(_gamepads[1] + "second connected");
         if (_numPlayers == 0)
         {
             _p1 = PlayerInput.Instantiate(_playerPrefab, _numPlayers, controlScheme: "Gamepad", pairWithDevice: Gamepad.all[0]);

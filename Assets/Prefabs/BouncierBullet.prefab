@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6069609979192829848}
   - component: {fileID: 8918552278150333316}
   - component: {fileID: 7630543353366466755}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BouncierBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
