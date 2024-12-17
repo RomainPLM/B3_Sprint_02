@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: IEMAftermath
-  m_Shader: {fileID: -6465566751694194690, guid: 456e4db7c1f06ca4282539239114517a, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 550f5688f9c34d5449c5f64df68958b7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -50,6 +50,7 @@ Material:
     - _QueueOffset: -6
     m_Colors:
     - _CenterColor: {r: 0.09803922, g: 0.17403702, b: 0.90588236, a: 1}
+    - _Color: {r: 0.33143458, g: 1.207674, b: 3.6981132, a: 0}
     - _OuterColor: {r: 0.763152, g: 4.498156, b: 5.9921565, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
