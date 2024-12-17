@@ -440,8 +440,8 @@ Shader "RocketExplosionPlane"
 				
 				float3 BakedAlbedo = 0;
 				float3 BakedEmission = 0;
-				float3 Color = ( ( ( _Color0 * tex2DNode11.r ) + ( _Color1.rgb * tex2DNode11.r ) ) * _Alpha );
-				float Alpha = 1;
+				float3 Color = ( ( _Color0 * tex2DNode11.r ) + ( _Color1.rgb * tex2DNode11.r ) );
+				float Alpha = ( tex2DNode11.r * _Alpha );
 				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
 
@@ -540,7 +540,7 @@ Shader "RocketExplosionPlane"
 			{
 				float4 positionOS : POSITION;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -554,7 +554,7 @@ Shader "RocketExplosionPlane"
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					float4 shadowCoord : TEXCOORD2;
 				#endif
-				
+				float4 ase_texcoord3 : TEXCOORD3;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -574,7 +574,8 @@ Shader "RocketExplosionPlane"
 			#endif
 			CBUFFER_END
 
-			
+			sampler2D _TextureSample0;
+
 
 			
 			PackedVaryings VertexFunction( Attributes input  )
@@ -584,7 +585,10 @@ Shader "RocketExplosionPlane"
 				UNITY_TRANSFER_INSTANCE_ID(input, output);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
+				output.ase_texcoord3.xy = input.ase_texcoord.xy;
 				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				output.ase_texcoord3.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = input.positionOS.xyz;
@@ -622,7 +626,8 @@ Shader "RocketExplosionPlane"
 			{
 				float4 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -639,7 +644,7 @@ Shader "RocketExplosionPlane"
 				UNITY_TRANSFER_INSTANCE_ID(input, output);
 				output.positionOS = input.positionOS;
 				output.normalOS = input.normalOS;
-				
+				output.ase_texcoord = input.ase_texcoord;
 				return output;
 			}
 
@@ -678,7 +683,7 @@ Shader "RocketExplosionPlane"
 				Attributes output = (Attributes) 0;
 				output.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				output.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
-				
+				output.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -721,9 +726,11 @@ Shader "RocketExplosionPlane"
 					#endif
 				#endif
 
+				float2 uv_TextureSample0 = input.ase_texcoord3.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
+				float4 tex2DNode11 = tex2D( _TextureSample0, uv_TextureSample0 );
 				
 
-				float Alpha = 1;
+				float Alpha = ( tex2DNode11.r * _Alpha );
 				float AlphaClipThreshold = 0.5;
 
 				#ifdef ASE_DEPTH_WRITE_ON
@@ -790,14 +797,14 @@ Shader "RocketExplosionPlane"
 			{
 				float4 positionOS : POSITION;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct PackedVaryings
 			{
 				float4 positionCS : SV_POSITION;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -817,7 +824,8 @@ Shader "RocketExplosionPlane"
 			#endif
 			CBUFFER_END
 
-			
+			sampler2D _TextureSample0;
+
 
 			
 			int _ObjectId;
@@ -838,7 +846,10 @@ Shader "RocketExplosionPlane"
 				UNITY_TRANSFER_INSTANCE_ID(input, output);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
+				output.ase_texcoord.xy = input.ase_texcoord.xy;
 				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				output.ase_texcoord.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = input.positionOS.xyz;
@@ -868,7 +879,8 @@ Shader "RocketExplosionPlane"
 			{
 				float4 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -885,7 +897,7 @@ Shader "RocketExplosionPlane"
 				UNITY_TRANSFER_INSTANCE_ID(input, output);
 				output.positionOS = input.positionOS;
 				output.normalOS = input.normalOS;
-				
+				output.ase_texcoord = input.ase_texcoord;
 				return output;
 			}
 
@@ -924,7 +936,7 @@ Shader "RocketExplosionPlane"
 				Attributes output = (Attributes) 0;
 				output.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				output.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
-				
+				output.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -946,9 +958,11 @@ Shader "RocketExplosionPlane"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
+				float2 uv_TextureSample0 = input.ase_texcoord.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
+				float4 tex2DNode11 = tex2D( _TextureSample0, uv_TextureSample0 );
 				
 
-				surfaceDescription.Alpha = 1;
+				surfaceDescription.Alpha = ( tex2DNode11.r * _Alpha );
 				surfaceDescription.AlphaClipThreshold = 0.5;
 
 				#if _ALPHATEST_ON
@@ -1012,14 +1026,14 @@ Shader "RocketExplosionPlane"
 			{
 				float4 positionOS : POSITION;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct PackedVaryings
 			{
 				float4 positionCS : SV_POSITION;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -1039,7 +1053,8 @@ Shader "RocketExplosionPlane"
 			#endif
 			CBUFFER_END
 
-			
+			sampler2D _TextureSample0;
+
 
 			
 			float4 _SelectionID;
@@ -1059,7 +1074,10 @@ Shader "RocketExplosionPlane"
 				UNITY_TRANSFER_INSTANCE_ID(input, output);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
+				output.ase_texcoord.xy = input.ase_texcoord.xy;
 				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				output.ase_texcoord.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = input.positionOS.xyz;
@@ -1087,7 +1105,8 @@ Shader "RocketExplosionPlane"
 			{
 				float4 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1104,7 +1123,7 @@ Shader "RocketExplosionPlane"
 				UNITY_TRANSFER_INSTANCE_ID(input, output);
 				output.positionOS = input.positionOS;
 				output.normalOS = input.normalOS;
-				
+				output.ase_texcoord = input.ase_texcoord;
 				return output;
 			}
 
@@ -1143,7 +1162,7 @@ Shader "RocketExplosionPlane"
 				Attributes output = (Attributes) 0;
 				output.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				output.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
-				
+				output.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1165,9 +1184,11 @@ Shader "RocketExplosionPlane"
 			{
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 
+				float2 uv_TextureSample0 = input.ase_texcoord.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
+				float4 tex2DNode11 = tex2D( _TextureSample0, uv_TextureSample0 );
 				
 
-				surfaceDescription.Alpha = 1;
+				surfaceDescription.Alpha = ( tex2DNode11.r * _Alpha );
 				surfaceDescription.AlphaClipThreshold = 0.5;
 
 				#if _ALPHATEST_ON
@@ -1248,7 +1269,7 @@ Shader "RocketExplosionPlane"
 			{
 				float4 positionOS : POSITION;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1258,7 +1279,7 @@ Shader "RocketExplosionPlane"
 				float4 clipPosV : TEXCOORD0;
 				float3 positionWS : TEXCOORD1;
 				float3 normalWS : TEXCOORD2;
-				
+				float4 ase_texcoord3 : TEXCOORD3;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -1278,7 +1299,8 @@ Shader "RocketExplosionPlane"
 			#endif
 			CBUFFER_END
 
-			
+			sampler2D _TextureSample0;
+
 
 			
 			struct SurfaceDescription
@@ -1296,7 +1318,10 @@ Shader "RocketExplosionPlane"
 				UNITY_TRANSFER_INSTANCE_ID(input, output);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
+				output.ase_texcoord3.xy = input.ase_texcoord.xy;
 				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				output.ase_texcoord3.zw = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = input.positionOS.xyz;
 				#else
@@ -1327,7 +1352,8 @@ Shader "RocketExplosionPlane"
 			{
 				float4 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1344,7 +1370,7 @@ Shader "RocketExplosionPlane"
 				UNITY_TRANSFER_INSTANCE_ID(input, output);
 				output.positionOS = input.positionOS;
 				output.normalOS = input.normalOS;
-				
+				output.ase_texcoord = input.ase_texcoord;
 				return output;
 			}
 
@@ -1383,7 +1409,7 @@ Shader "RocketExplosionPlane"
 				Attributes output = (Attributes) 0;
 				output.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				output.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
-				
+				output.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1418,9 +1444,11 @@ Shader "RocketExplosionPlane"
 				float4 ClipPos = input.clipPosV;
 				float4 ScreenPos = ComputeScreenPos( input.clipPosV );
 
+				float2 uv_TextureSample0 = input.ase_texcoord3.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
+				float4 tex2DNode11 = tex2D( _TextureSample0, uv_TextureSample0 );
 				
 
-				float Alpha = 1;
+				float Alpha = ( tex2DNode11.r * _Alpha );
 				float AlphaClipThreshold = 0.5;
 
 				#ifdef ASE_DEPTH_WRITE_ON
@@ -1508,7 +1536,7 @@ Shader "RocketExplosionPlane"
 				#if _ADD_PRECOMPUTED_VELOCITY
 					float3 alembicMotionVector : TEXCOORD5;
 				#endif
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1517,7 +1545,7 @@ Shader "RocketExplosionPlane"
 				float4 positionCS : SV_POSITION;
 				float4 positionCSNoJitter : TEXCOORD0;
 				float4 previousPositionCSNoJitter : TEXCOORD1;
-				
+				float4 ase_texcoord2 : TEXCOORD2;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -1557,7 +1585,8 @@ Shader "RocketExplosionPlane"
 				int _PassValue;
 			#endif
 
-			
+			sampler2D _TextureSample0;
+
 
 			
 			PackedVaryings VertexFunction( Attributes input  )
@@ -1567,7 +1596,10 @@ Shader "RocketExplosionPlane"
 				UNITY_TRANSFER_INSTANCE_ID(input, output);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
+				output.ase_texcoord2.xy = input.ase_texcoord.xy;
 				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				output.ase_texcoord2.zw = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					float3 defaultVertexValue = input.positionOS.xyz;
@@ -1610,9 +1642,11 @@ Shader "RocketExplosionPlane"
 				UNITY_SETUP_INSTANCE_ID(input);
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX( input );
 
+				float2 uv_TextureSample0 = input.ase_texcoord2.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
+				float4 tex2DNode11 = tex2D( _TextureSample0, uv_TextureSample0 );
 				
 
-				float Alpha = 1;
+				float Alpha = ( tex2DNode11.r * _Alpha );
 				float AlphaClipThreshold = 0.5;
 
 				#ifdef _ALPHATEST_ON
@@ -1646,7 +1680,7 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode;18;-304,-96;Inherit;False;2;2;0;FL
 Node;AmplifyShaderEditor.ColorNode;19;-752,-272;Inherit;False;Property;_Color1;Color 1;2;0;Create;True;0;0;0;False;0;False;0,0,0,0;0,0,0,0;True;True;0;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
 Node;AmplifyShaderEditor.StepOpNode;14;-448,304;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;15;-720,320;Inherit;False;Constant;_Float0;Float 0;2;1;[HDR];Create;True;0;0;0;False;0;False;0.78;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;21;28.51764,50.37244;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;21;28.51764,50.37244;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;True;1;1;False;;0;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;True;True;True;True;0;False;;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;True;1;False;;True;3;False;;True;True;0;False;;0;False;;True;0;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;True;3;False;;False;True;1;LightMode=ShadowCaster;False;False;0;;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;3;UnityEditor.ShaderGraphUnlitGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;True;0;False;;False;False;False;False;False;False;False;False;False;True;False;0;False;;255;False;;255;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;0;False;;False;False;False;False;True;4;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;UniversalMaterialType=Unlit;True;5;True;12;all;0;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;;False;False;False;True;False;False;False;False;0;False;;False;False;False;False;False;False;False;False;False;True;1;False;;False;False;True;1;LightMode=DepthOnly;False;False;0;;0;0;Standard;0;False;0
@@ -1666,8 +1700,9 @@ WireConnection;18;0;19;5
 WireConnection;18;1;11;1
 WireConnection;14;0;11;1
 WireConnection;14;1;15;0
-WireConnection;21;0;17;0
+WireConnection;21;0;11;1
 WireConnection;21;1;22;0
-WireConnection;1;2;21;0
+WireConnection;1;2;17;0
+WireConnection;1;3;21;0
 ASEEND*/
-//CHKSM=DFEB7FB448BB897C1559B2E8CE0B54B22F4327B3
+//CHKSM=36EAB208129948724418502FAD2F4CD5EF873A9C

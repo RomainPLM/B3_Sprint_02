@@ -30,12 +30,10 @@ public class PlayerJoin : MonoBehaviour
     }
     private void Update()
     {
-       
-        
-
-
-      
-
+        //_gamepads = Gamepad.all.ToArray();
+        //print(_gamepads.Length);
+        //print(_gamepads[0] + "connected first");
+        //print(_gamepads[1] + "second connected");
         if (_numPlayers == 0)
         {
             _p1 = PlayerInput.Instantiate(_playerPrefab, _numPlayers, controlScheme: "Gamepad", pairWithDevice: Gamepad.all[0]);
@@ -62,4 +60,37 @@ public class PlayerJoin : MonoBehaviour
         _controllers = Input.GetJoystickNames()[0];
      
     }
+
+    //automatically called when player joins the game session
+    //void OnPlayerJoined(PlayerInput playerInput)
+    //{
+
+    //    Debug.Log("Spawn Position: " + _spawnPoint[_numPlayers].position);
+
+    //    playerInput.gameObject.transform.position = _spawnPoint[_numPlayers].position;
+    //    playerInput.gameObject.transform.rotation = _spawnPoint[_numPlayers].rotation;
+
+    //    if (_numPlayers == 0)
+    //    {
+    //        var p1 = PlayerInput.Instantiate(_playerPrefab, _numPlayers, controlScheme: "Gamepad", pairWithDevice: Gamepad.all[0]);
+    //        playerInput.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+    //        playerInput.gameObject.GetComponent<PlayerScript>()._playerNumber = _numPlayers;
+
+    //    }
+    //    else if (_numPlayers == 1)
+    //    {
+    //        var p2 = PlayerInput.Instantiate(_playerPrefab, controlScheme: "Gamepad", pairWithDevice: Gamepad.all[0]);
+    //        playerInput.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+    //        playerInput.gameObject.GetComponent<PlayerScript>()._playerNumber = _numPlayers;
+    //    }
+
+
+    //    _numPlayers++;
+
+    //    if (_numPlayers >= 2)
+    //    {
+    //        _playerInputManager.enabled = false;
+    //    }
+
+    //}
 }

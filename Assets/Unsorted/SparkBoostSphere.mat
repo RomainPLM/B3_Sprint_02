@@ -37,7 +37,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AddPrecomputedVelocity: 1
     - _AlphaCutoff: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -49,7 +48,6 @@ Material:
     - _TessPhongStrength: 0.5
     - _TessValue: 16
     m_Colors:
-    - _Color0: {r: 168.55154, g: 26.787733, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

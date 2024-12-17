@@ -25,6 +25,8 @@ public class PlayerScript : MonoBehaviour
 
     public bool _placeBloc;
 
+    public float _dodgePower = 5;
+
 
     //public double timestamp;
 
@@ -108,13 +110,11 @@ public class PlayerScript : MonoBehaviour
         print("i clic on Y"+_playerNumber);
        _placeBloc = true;
 
-
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.layer == _bulletLayer)
-    //    {
-    //        _isDead = true;
-    //    }
-    //}
+    private void OnDash()
+    {
+        this.transform.position -= transform.forward * _dodgePower;
+        print("DASH");
+    }
+
 }
