@@ -1,8 +1,12 @@
 fileFormatVersion: 2
-guid: b7a1d2eb0f94cb64485edab69b321ba1
+<<<<<<<< HEAD:Assets/Materials/Meshes_materials/bouteille_bouchon.mat.meta
+guid: 4a402672642aec24ca80159d00edf27d
+========
+guid: 87268d101bf6d7e4184eaaad2b07f14e
+>>>>>>>> 04e4ef6273bdab7b47f9ab0dac2791fe7c492439:Assets/Materials/Meshes_materials/briquet_metal.mat.meta
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 0
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

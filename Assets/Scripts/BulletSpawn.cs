@@ -10,6 +10,8 @@ public class BulletSpawn : MonoBehaviour
     public float FireRate = 0.5f;
     
     private bool canShoot = true;
+    public bool differentBullet;
+    
 
     void Start()
     {
@@ -17,6 +19,10 @@ public class BulletSpawn : MonoBehaviour
 
     void Update()
     {
+        if (differentBullet == false)
+        {
+            changeBack();
+        }
     }
 
     void OnJump()
@@ -31,11 +37,28 @@ public class BulletSpawn : MonoBehaviour
     {
         Instantiate(Bullets[WhichBullet], SpawnPoint.position, SpawnPoint.rotation);
         canShoot = false;
+        differentBullet = false;
         Invoke(nameof(ResetShoot), FireRate);
     }
 
     private void ResetShoot()
     {
         canShoot = true;
+    }
+
+    public void ChangeBullet(int whichBullet)
+    {
+        for (int i = 0; i < 1; i++)
+        {
+            differentBullet = true;
+            WhichBullet = whichBullet;
+        }
+        
+        
+    }
+
+    public void changeBack()
+    {
+        WhichBullet = 0;
     }
 }

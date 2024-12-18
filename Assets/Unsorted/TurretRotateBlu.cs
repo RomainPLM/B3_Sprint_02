@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TurretRotate : MonoBehaviour
+public class TurretRotateBlu : MonoBehaviour
 {
     public float RotationSpeed = 5f;
 
