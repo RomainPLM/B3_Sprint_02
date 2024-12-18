@@ -35,7 +35,17 @@
         "Assets/Unsorted\\cup_plate_standardSurface1_BaseMap.png",
         "Assets/Unsorted\\cup_plate_standardSurface1_MaskMap.png",
         "Assets/Unsorted\\cup_plate_standardSurface1_Normal.png",
-        "Assets/Unsorted\\cup_plate.fbx"
+        "Assets/Unsorted\\cup_plate.fbx",
+        "Assets/Unsorted\\ExplosionRocket.shader",
+        "Assets/Unsorted\\ExplosionRocketPlaneBelow.shader",
+        "Assets/Unsorted\\ExplosionRocketPlaneDeFeu.mat",
+        "Assets/Unsorted\\ExplosionRocketPlaneDeFeu.shader",
+        "Assets/Unsorted\\MaskEmissiveRocketExplosion.tga",
+        "Assets/Unsorted\\RocketExplosion.tga",
+        "Assets/Unsorted\\RocketExplosionPlane.mat",
+        "Assets/Unsorted\\RocketExplosionPlane.shader",
+        "Assets/Unsorted\\RocketMaskAlpha.tga",
+        "Assets/Unsorted\\RocketSmokeMask.tga"
     ],
     "newPaths": [
         "Assets/Materials\\OutlineTest.mat",
@@ -73,6 +83,16 @@
         "Assets/Textures\\cup_plate_standardSurface1_BaseMap.png",
         "Assets/Textures\\cup_plate_standardSurface1_MaskMap.png",
         "Assets/Textures\\cup_plate_standardSurface1_Normal.png",
-        "Assets/Meshes\\cup_plate.fbx"
+        "Assets/Meshes\\cup_plate.fbx",
+        "Assets/Shaders\\ExplosionRocket.shader",
+        "Assets/Shaders\\ExplosionRocketPlaneBelow.shader",
+        "Assets/Materials\\ExplosionRocketPlaneDeFeu.mat",
+        "Assets/Shaders\\ExplosionRocketPlaneDeFeu.shader",
+        "Assets/Textures\\MaskEmissiveRocketExplosion.tga",
+        "Assets/Textures\\RocketExplosion.tga",
+        "Assets/Materials\\RocketExplosionPlane.mat",
+        "Assets/Shaders\\RocketExplosionPlane.shader",
+        "Assets/Textures\\RocketMaskAlpha.tga",
+        "Assets/Textures\\RocketSmokeMask.tga"
     ]
 }
