@@ -105,9 +105,6 @@ public class GameGestion : MonoBehaviour
                 _playerScript1._playerInput.actions.FindAction("Interact").Enable();
                 _playerScript2._playerInput.actions.FindAction("Interact").Enable();
 
-                _playerScript1._playerInput.actions.FindAction("Rotate").Enable();
-                _playerScript2._playerInput.actions.FindAction("Rotate").Enable();
-
             }
         }
 
