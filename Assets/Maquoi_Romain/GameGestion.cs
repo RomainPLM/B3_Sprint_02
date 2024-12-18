@@ -18,6 +18,8 @@ public class GameGestion : MonoBehaviour
 
     public bool _mancheEnd;
 
+    public GameObject _killCube;
+
 
     public List<BlockDisplacement> _blocList = new();
 
@@ -80,11 +82,13 @@ public class GameGestion : MonoBehaviour
 
             if (_mancheEnd == false)
             {
+                _killCube.SetActive(false);
                 _playerScript1._playerInput.actions.Enable();
                 _playerScript2._playerInput.actions.Enable();
             }
             else
             {
+                _killCube.SetActive(true);
 
                 //Action on player
                 _playerScript1._playerInput.actions.Disable();

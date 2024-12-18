@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AmplifyShaderEditor/Plugins/EditorResources/Templates/HDRP 10x.unitypackage.meta
+guid: 1644122cfc51d604c91f8eda18e75db6
+DefaultImporter:
+  externalObjects: {}
+========
 guid: 8012c4700ce0cd24392f22c87fe0940a
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
+>>>>>>>> e48ee621b4addec023959a010d665ba315b0a277:Assets/Maquoi_Romain/Nappe.mat.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

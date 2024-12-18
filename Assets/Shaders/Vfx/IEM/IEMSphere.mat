@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: IEMSphere
-  m_Shader: {fileID: -6465566751694194690, guid: 553f170429e11d543a99f7ab30e8babb, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b1004ccf356ab3343a788c0410b7442a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -53,6 +53,8 @@ Material:
     m_Floats:
     - _Density: 50
     - _Float: 0
+    - _FresnelPow: 2
+    - _Intensity: 10
     - _Power: 5
     - _QueueControl: 0
     - _QueueOffset: 0
