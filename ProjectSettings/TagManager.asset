@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 3
   tags:
   - Shield
-  - Bonus
   layers:
   - Default
   - TransparentFX
@@ -18,8 +17,8 @@ TagManager:
   - Shield
   - Player
   - Bullet
-  - Bonus
-  - Kill
+  - KillBox
+  - 
   - 
   - 
   - 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3840170673042702383}
   - component: {fileID: 3372827956954582661}
   - component: {fileID: 5465602703514934751}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BEc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7622507840976108811}
   - component: {fileID: 4481285621233306348}
   - component: {fileID: 4322124277338561968}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 846075517745781770}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 1721453662541223159}
   - component: {fileID: 8015920699142006484}
   - component: {fileID: 6143487809986792686}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Arm (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 6302557271598870947}
   - component: {fileID: 3095148890796687890}
   - component: {fileID: 2056797589208114457}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 794343365724978359}
   - component: {fileID: 7938109707250187517}
   - component: {fileID: 3683672110000064148}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,8 @@ GameObject:
   - component: {fileID: 2171598786936300843}
   - component: {fileID: 5500755202587340474}
   - component: {fileID: -5028902731010737107}
-  m_Layer: 9
+  - component: {fileID: 5345548657073349982}
+  m_Layer: 0
   m_Name: PlayerTry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,6 +747,7 @@ MonoBehaviour:
   _placableBloc: {fileID: 2628017235863200297, guid: d08355743fb6163418202cb47749c627, type: 3}
   _placeBloc: 0
   _dodgePower: 5
+  _rotateBloc: 0
 --- !u!54 &5500755202587340474
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -793,4 +795,27 @@ MonoBehaviour:
   - {fileID: 3897950038335948227, guid: ebb62f0fe7c26c44981ddf218d90229d, type: 3}
   - {fileID: 531926842108977702, guid: d5b74de7031ae7143b945652d460f269, type: 3}
   WhichBullet: 0
-  FireRate: 0.5
+  maxAmmo: 1000000
+  reloadTime: 2
+--- !u!195 &5345548657073349982
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7110016912892707139}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
