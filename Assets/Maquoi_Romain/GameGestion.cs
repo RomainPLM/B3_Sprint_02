@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,11 +18,6 @@ public class GameGestion : MonoBehaviour
 
     public bool _mancheEnd;
 
-    public NavMeshSurface _navMeshSurf;
-
-    private bool _recalcNavMesh;
- 
-
 
     public List<BlockDisplacement> _blocList = new();
 
@@ -31,8 +25,6 @@ public class GameGestion : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _navMeshSurf.UpdateNavMesh(_navMeshSurf.navMeshData);
-        
         _playerJoinScript = GetComponent<PlayerJoin>();
     }
     // if je re meurt je ne me stop pas (refaire fin de manche)(bool a reset?)
@@ -88,12 +80,6 @@ public class GameGestion : MonoBehaviour
 
             if (_mancheEnd == false)
             {
-                if (_recalcNavMesh == true)
-                {
-                    _navMeshSurf.UpdateNavMesh(_navMeshSurf.navMeshData);
-                    _recalcNavMesh = false;
-                }
-                
                 _playerScript1._playerInput.actions.Enable();
                 _playerScript2._playerInput.actions.Enable();
             }
@@ -118,10 +104,6 @@ public class GameGestion : MonoBehaviour
 
                 _playerScript1._playerInput.actions.FindAction("Interact").Enable();
                 _playerScript2._playerInput.actions.FindAction("Interact").Enable();
-
-                _playerScript1._playerInput.actions.FindAction("Rotate").Enable();
-                _playerScript2._playerInput.actions.FindAction("Rotate").Enable();
-                _recalcNavMesh=true;
 
             }
         }

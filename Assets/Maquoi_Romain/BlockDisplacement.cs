@@ -28,7 +28,7 @@ public class BlockDisplacement : MonoBehaviour
 
     private void Update()
     {
-      
+     
 
 
         //if (Time.timeAsDouble == _playerScript.timestamp)
@@ -44,14 +44,6 @@ public class BlockDisplacement : MonoBehaviour
                 Destroy(this);
             }
         }
-
-        if (_playerScript._rotateBloc == true && _blocDisplacementEnabled==true)
-        {
-            print("u are actually tring to rotate a gameobject");
-            this.gameObject.transform.rotation *= Quaternion.Euler(0, 90, 0);
-            _playerScript._rotateBloc = false;
-        }
-
         if (_blocDisplacementEnabled == true)
         {
             if (_playerScript._playerNumber == 0)
