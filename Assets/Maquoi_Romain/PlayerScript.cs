@@ -121,6 +121,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+      
         if (other.gameObject.layer == _bulletLayer)
         {
             _isDead = true;
@@ -128,11 +129,11 @@ public class PlayerScript : MonoBehaviour
             print("Ouch i got hit by" + other.name);
         }
     }
+
     private void OnRotate()
     {
       
         _rotateBloc = true;
         print("rotate" + _rotateBloc);
-
     }
 }
