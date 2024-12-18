@@ -27,9 +27,6 @@ public class PlayerScript : MonoBehaviour
 
     public float _dodgePower = 5;
 
-    private int _bulletLayer = 10;
-
-    public bool _rotateBloc;
 
     //public double timestamp;
 
@@ -88,7 +85,7 @@ public class PlayerScript : MonoBehaviour
            
             _didInstance = true;
             var randomInList =  Random.Range(0, _gameGestion._blocTypes.Count );
-            GameObject bloc = Instantiate(_gameGestion._blocTypes[randomInList], new Vector3(transform.position.x, _gameGestion._blocTypes[randomInList].transform.localScale.y/2, transform.position.z),Quaternion.identity);
+            GameObject bloc = Instantiate(_gameGestion._blocTypes[/*randomInList*/0], new Vector3(transform.position.x, 00, transform.position.z),Quaternion.identity);
            // GameObject bloc = Instantiate(_placableBloc, new Vector3(transform.position.x, 00, transform.position.z), transform.rotation);
             _blockDisplacement = bloc.GetComponent<BlockDisplacement>();
             _gameGestion._blocList.Add(_blockDisplacement);
@@ -119,20 +116,5 @@ public class PlayerScript : MonoBehaviour
         this.transform.position -= transform.forward * _dodgePower;
         print("DASH");
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == _bulletLayer)
-        {
-            _isDead = true;
-            Destroy(other.gameObject);
-            print("Ouch i got hit by" + other.name);
-        }
-    }
-    private void OnRotate()
-    {
-      
-        _rotateBloc = true;
-        print("rotate" + _rotateBloc);
 
-    }
 }

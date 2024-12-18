@@ -1056,6 +1056,7 @@ MonoBehaviour:
   _blocTypes:
   - {fileID: 2628017235863200297, guid: d08355743fb6163418202cb47749c627, type: 3}
   - {fileID: 535772052292989461, guid: f8efe1e5f1928364fae40e56ce8572d6, type: 3}
+  - {fileID: 3895492692256355593, guid: 87c7c5ddb2f352d4d84e2edea3c7748b, type: 3}
 --- !u!1 &1100512837
 GameObject:
   m_ObjectHideFlags: 0
