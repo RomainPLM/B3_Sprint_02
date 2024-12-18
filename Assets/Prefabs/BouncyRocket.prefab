@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b5ccbbbee833f4c9699191bc71a05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 20
   maxBounces: 3
   bounceExplosion: {fileID: 2317264069316897258, guid: 125e6cc7d977f134f88708f7d31580f2, type: 3}
   currentBounces: 0

@@ -8,7 +8,7 @@ public class BlockDisplacement : MonoBehaviour
 
 
     public float _blocDisplacementSize;
-    public float _blocDisplacementTimeBetween = 0.5f;
+    public float _blocDisplacementTimeBetween = 0.1f;
     private bool _blocDisplacementEnabled;
     private float _timer;
     private Renderer _renderer;
