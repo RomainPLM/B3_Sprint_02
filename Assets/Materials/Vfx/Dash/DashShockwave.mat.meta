@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/Vfx/Dash/DashShockwave.mat.meta
 guid: 95907ec4e69342042adddafee1b2ae97
+========
+guid: 440fc473509146146859f5826d8af8be
+>>>>>>>> 28db31279a8ec61ed26427d2fa748707f3859f98:Assets/Materials/RocketExplosionPlane.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
