@@ -36,8 +36,8 @@ public class BouncyBullet : MonoBehaviour
         {
             if (hit.collider.CompareTag("Shield"))
             {
-                
-                direction = -direction.normalized;
+                print("deflect"); 
+                direction = -direction.normalized;  
 
                 transform.position = hit.point;
 
