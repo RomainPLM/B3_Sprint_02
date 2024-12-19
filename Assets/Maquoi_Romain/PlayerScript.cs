@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Threading.Tasks;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -25,7 +26,10 @@ public class PlayerScript : MonoBehaviour
 
     public bool _placeBloc;
 
-    public float _dodgePower = 5;
+    public float _dodgeDistance = 5;
+    [SerializeField] private GameObject _dashStart, _dashEnd;
+    private Animator _animator;
+
 
     private int _bulletLayer = 10;
 
@@ -41,6 +45,7 @@ public class PlayerScript : MonoBehaviour
         _gameGestion = Object.FindAnyObjectByType<GameGestion>();
         _playerInput = GetComponent<PlayerInput>();
         // instancier bloc recuperer son scirpt et lui attribu  nombre du joueur!
+        _animator = GetComponentInChildren<Animator>();
     }
     private void Update()
     {
@@ -129,8 +134,12 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnDash()
     {
-        this.transform.position -= transform.forward * _dodgePower;
-        print("DASH");
+        float time = 0;
+        float baseMovSpeed = _movementSpeed;
+        float curveTime = 1;
+        Instantiate(_dashStart, transform.position, transform.rotation);
+        //Instantiate(_dashEnd, transform.position, Quaternion.identity);
+        Dash(time, baseMovSpeed, curveTime);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -146,6 +155,14 @@ public class PlayerScript : MonoBehaviour
         _rotateBloc = true;
         print("rotate" + _rotateBloc + "fck l input systeme");
 
+
+    }
+    private async void Dash(float time, float baseMovSpeed, float curveTime)
+    {
+        _animator.SetTrigger("Dash");
+        _movementSpeed *= _dodgeDistance;
+        await Task.Delay(500);
+        _movementSpeed = baseMovSpeed;
 
     }
 }
