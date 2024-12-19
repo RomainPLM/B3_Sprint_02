@@ -14,6 +14,9 @@ public class BulletSpawn : MonoBehaviour
     public bool differentBullet;
     public bool inWall = false;
 
+    public bool _haveBonus = false;
+    public int _bulletBonus;
+
     void Start()
     {
     }
@@ -22,7 +25,7 @@ public class BulletSpawn : MonoBehaviour
     {
         if (differentBullet == false)
         {
-            changeBack();
+            ChangeBack();
         }
     }
 
@@ -51,12 +54,13 @@ public class BulletSpawn : MonoBehaviour
     {
         for (int i = 0; i < 1; i++)
         {
-            differentBullet = true;
-            WhichBullet = whichBullet;
+           
+            //WhichBullet = whichBullet;
+            _bulletBonus=whichBullet;
         }
     }
 
-    public void changeBack()
+    public void ChangeBack()
     {
         WhichBullet = 0;
     }
@@ -82,5 +86,10 @@ public class BulletSpawn : MonoBehaviour
         {
             inWall = false;
         }
+    }
+    private void OnUseBonus()
+    {
+        WhichBullet = _bulletBonus;
+        differentBullet = true;
     }
 }

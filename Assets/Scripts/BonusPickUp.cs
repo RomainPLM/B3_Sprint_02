@@ -17,6 +17,7 @@ public class BonusPickUp : MonoBehaviour
             if (bulletspawn != null)
             {
                 bulletspawn.ChangeBullet(Random.Range(1, 5));
+                bulletspawn._haveBonus = true;
                 Destroy(gameObject);
             }
         }
