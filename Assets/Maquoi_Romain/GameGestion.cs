@@ -94,7 +94,11 @@ public class GameGestion : MonoBehaviour
                 _playerScript2._playerInput.actions.Enable();
                 if (_recalcNavMesh == true)
                 {
+                   _playerScript1.transform.position = new Vector3(_playerScript1.transform.position.x, _playerScript1.transform.position.y + 5, _playerScript1.transform.position.z);
+                   _playerScript2.transform.position = new Vector3(_playerScript2.transform.position.x, _playerScript2.transform.position.y + 5, _playerScript2.transform.position.z);
                     _navMeshSurf.UpdateNavMesh(_navMeshSurf.navMeshData);
+                    _playerScript1.transform.position = new Vector3(_playerScript1.transform.position.x, _playerScript1.transform.position.y - 5, _playerScript1.transform.position.z);
+                    _playerScript2.transform.position = new Vector3(_playerScript2.transform.position.x, _playerScript2.transform.position.y - 5, _playerScript2.transform.position.z);
                     _recalcNavMesh = false;
                 }
             }

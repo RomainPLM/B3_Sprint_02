@@ -885,6 +885,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBlu
       objectReference: {fileID: 0}
+    - target: {fileID: 5850861530035072465, guid: ee3ffb809f0dabe47a5c6fe05b59fa26, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6415678045600805520, guid: ee3ffb809f0dabe47a5c6fe05b59fa26, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1009,7 +1013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7110016912892707139, guid: 8a08c7f30c58066499c07412b5406e4a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

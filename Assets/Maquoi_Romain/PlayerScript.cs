@@ -31,6 +31,8 @@ public class PlayerScript : MonoBehaviour
 
     public bool _rotateBloc;
 
+    public bool _iemIsOn= false;
+
     //public double timestamp;
 
     private void Start()
@@ -99,14 +101,24 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnMove(InputValue value)
     {
+        Vector2 moveInputValue = value.Get<Vector2>();
         //if (_blockDisplacement._blocIsPosed == true)
         //{
-        Vector2 moveInputValue = value.Get<Vector2>();
-        _playerPosition.x = transform.position.x + moveInputValue.x;
-        _playerPosition.y = transform.position.z + moveInputValue.y;
-        _movement = new Vector3(moveInputValue.x, 0.0f, moveInputValue.y);//dupliquer dans le joystick de droite
-        this.transform.LookAt(transform.position + (-_movement) + transform.forward);// transferer dans le joystick de droite 
-                                                                                     //}
+        if (_iemIsOn == false)
+        {
+           
+            _playerPosition.x = transform.position.x + moveInputValue.x;
+            _playerPosition.y = transform.position.z + moveInputValue.y;
+            _movement = new Vector3(moveInputValue.x, 0.0f, moveInputValue.y);
+            this.transform.LookAt(transform.position + (-_movement) + transform.forward);
+        }
+        else
+        {
+            _playerPosition.x = transform.position.x - moveInputValue.x;
+            _playerPosition.y = transform.position.z - moveInputValue.y;
+            _movement = new Vector3(moveInputValue.x, 0.0f, moveInputValue.y);
+        }
+                                                                                    
 
     }
     private void OnInteract()
