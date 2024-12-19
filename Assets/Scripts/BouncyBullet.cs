@@ -31,7 +31,7 @@ public class BouncyBullet : MonoBehaviour
         Ray ray = new Ray(transform.position, direction);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, speed * Time.deltaTime))
+        if (Physics.SphereCast(ray, 1f, out hit, speed * Time.deltaTime))
         {
             if (hit.collider.CompareTag("Shield"))
             {
