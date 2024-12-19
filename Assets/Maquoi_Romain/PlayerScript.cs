@@ -134,7 +134,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnDash()
     {
-        print("dash");
+        
         float time = 0;
         float baseMovSpeed = _movementSpeed;
         float curveTime = 1;
