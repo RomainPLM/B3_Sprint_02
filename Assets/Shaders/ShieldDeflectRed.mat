@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShieldDeflect
+  m_Name: ShieldDeflectRed
   m_Shader: {fileID: 4800000, guid: 8cc9741fd1a5b0247afea4b808a93ab2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -68,7 +68,7 @@ Material:
     - _TessValue: 16
     - _TimeNoise: 0.2
     m_Colors:
-    - _Color0: {r: 0.38047624, g: 3.8736694, b: 6.055913, a: 0}
+    - _Color0: {r: 6.055913, g: 0.41218266, b: 0.54629296, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Offset: {r: 8.5, g: 9.5, b: 0, a: 0}
     - _OffsetNoise: {r: 1.8, g: 0, b: 0, a: 0}
