@@ -5,7 +5,8 @@ public class BouncyRocket : MonoBehaviour
     public float speed = 10f;
     public int maxBounces = 3;
     public GameObject bounceExplosion, bounceVfx;
-    
+    public AudioClip[] audios;
+
 
     public int currentBounces = 0;
     private Vector3 direction;
@@ -47,7 +48,9 @@ public class BouncyRocket : MonoBehaviour
 
             Vector3 normal = new Vector3(hit.normal.x, 0, hit.normal.z).normalized;
             Instantiate(bounceVfx, transform.position, Quaternion.identity);
-                direction = Vector3.Reflect(direction, normal).normalized;
+            SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
+
+            direction = Vector3.Reflect(direction, normal).normalized;
 
                 transform.position = hit.point;
                 Instantiate(bounceExplosion, transform.position, transform.rotation);

@@ -27,7 +27,7 @@ public class PlayerScript : MonoBehaviour
     public bool _placeBloc;
 
     public float _dodgeDistance = 5;
-    [SerializeField] private GameObject _dashStart, _dashEnd, _deathExplosion;
+    [SerializeField] private GameObject _dashStart, _deathExplosion;
     private Animator _animator;
 
 
@@ -35,8 +35,14 @@ public class PlayerScript : MonoBehaviour
 
     public bool _rotateBloc;
 
-    public bool _iemIsOn= false;
+    public bool _iemIsOn = false;
 
+    public AudioClip[] placeBlocaudios, dashAudios, deathAudios;
+    public float soundVolume;
+    public int timebfrSiap;
+
+    private MeshRenderer[] _renderer;
+    private SkinnedMeshRenderer[] _Srenderer;
     //public double timestamp;
 
     private void Start()
@@ -46,11 +52,32 @@ public class PlayerScript : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         // instancier bloc recuperer son scirpt et lui attribu  nombre du joueur!
         _animator = GetComponentInChildren<Animator>();
+        _renderer = GetComponentsInChildren<MeshRenderer>();
+        _Srenderer = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
     private void Update()
     {
-      
+        BlocDisplacement();
 
+        this.transform.position = transform.position + (_movement * _movementSpeed * Time.deltaTime);
+
+        if (_gameGestion._mancheEnd == true && _didInstance == false)
+        {
+
+            _didInstance = true;
+            var randomInList = Random.Range(0, _gameGestion._blocTypes.Length);
+            GameObject bloc = Instantiate(_gameGestion._blocTypes[randomInList], new Vector3(transform.position.x, _gameGestion._blocTypes[randomInList].transform.localScale.y / 2, transform.position.z), Quaternion.identity);
+            // GameObject bloc = Instantiate(_placableBloc, new Vector3(transform.position.x, 00, transform.position.z), transform.rotation);
+            _blockDisplacement = bloc.GetComponent<BlockDisplacement>();
+            _gameGestion._blocList.Add(_blockDisplacement);
+            bloc.GetComponent<BlockDisplacement>()._playerScript = this;
+
+
+        }
+    }
+
+    private void BlocDisplacement()
+    {
         if (Input.GetAxisRaw("VerticalJoy1") > 0.15 || Input.GetAxisRaw("VerticalJoy1") < -0.15)
         {
             _blocDisplacementDirection1.x = -Input.GetAxisRaw("VerticalJoy1");
@@ -86,24 +113,8 @@ public class PlayerScript : MonoBehaviour
         {
             _blocDisplacementDirection2.y = 0;
         }
-
-
-        this.transform.position = transform.position + (_movement * _movementSpeed * Time.deltaTime);
-
-        if (_gameGestion._mancheEnd == true && _didInstance == false)
-        {
-
-            _didInstance = true;
-            var randomInList = Random.Range(0, _gameGestion._blocTypes.Count);
-            GameObject bloc = Instantiate(_gameGestion._blocTypes[randomInList], new Vector3(transform.position.x, _gameGestion._blocTypes[randomInList].transform.localScale.y / 2, transform.position.z), Quaternion.identity);
-            // GameObject bloc = Instantiate(_placableBloc, new Vector3(transform.position.x, 00, transform.position.z), transform.rotation);
-            _blockDisplacement = bloc.GetComponent<BlockDisplacement>();
-            _gameGestion._blocList.Add(_blockDisplacement);
-            bloc.GetComponent<BlockDisplacement>()._playerScript = this;
-           
-
-        }
     }
+
     private void OnMove(InputValue value)
     {
         Vector2 moveInputValue = value.Get<Vector2>();
@@ -111,7 +122,7 @@ public class PlayerScript : MonoBehaviour
         //{
         if (_iemIsOn == false)
         {
-           
+
             _playerPosition.x = transform.position.x + moveInputValue.x;
             _playerPosition.y = transform.position.z + moveInputValue.y;
             _movement = new Vector3(moveInputValue.x, 0.0f, moveInputValue.y);
@@ -123,33 +134,36 @@ public class PlayerScript : MonoBehaviour
             _playerPosition.y = transform.position.z - moveInputValue.y;
             _movement = new Vector3(moveInputValue.x, 0.0f, moveInputValue.y);
         }
-                                                                                    
+
 
     }
     private void OnInteract()
     {
         print("i clic on Y" + _playerNumber);
+        SfxManager._instance.PlayAudioClip(placeBlocaudios, transform, false, soundVolume);
         _placeBloc = true;
 
     }
     private void OnDash()
     {
-        
+
         float time = 0;
         float baseMovSpeed = _movementSpeed;
         float curveTime = 1;
+        SfxManager._instance.PlayAudioClip(dashAudios, transform, false, soundVolume);
         Instantiate(_dashStart, transform.position, transform.rotation);
-        //Instantiate(_dashEnd, transform.position, Quaternion.identity);
         Dash(time, baseMovSpeed, curveTime);
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == _bulletLayer)
+        if (other.gameObject.layer == _bulletLayer && gameObject.layer != 8)
         {
             _isDead = true;
-           Instantiate(_deathExplosion, transform.position, Quaternion.identity);
+            SfxManager._instance.PlayAudioClip(deathAudios, transform, false, soundVolume);
+            Instantiate(_deathExplosion, transform.position, Quaternion.identity);
+            Death();
             Destroy(other.gameObject);
-            
+
             //print("Ouch i got hit by" + other.name);
         }
     }
@@ -167,5 +181,27 @@ public class PlayerScript : MonoBehaviour
         await Task.Delay(500);
         _movementSpeed = baseMovSpeed;
 
+    }
+
+    private async void Death()
+    {
+        await Task.Delay(250);
+        foreach (MeshRenderer mRend in _renderer)
+        {
+            mRend.enabled = false;
+        }
+        foreach (SkinnedMeshRenderer smRend in _Srenderer)
+        {
+            smRend.enabled = false;
+        }
+        await Task.Delay(1000);
+        foreach (MeshRenderer mRend in _renderer)
+        {
+            mRend.enabled = true;
+        }
+        foreach (SkinnedMeshRenderer smRend in _Srenderer)
+        {
+            smRend.enabled = true;
+        }
     }
 }

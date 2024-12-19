@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class GameGestion : MonoBehaviour
 {
+    public static GameGestion _instance;
+
     private int _numPlayers;
     private PlayerScript _playerScript1;
     private PlayerScript _playerScript2;
@@ -18,13 +20,14 @@ public class GameGestion : MonoBehaviour
     public int _player2WinAmmount;
 
     public bool _mancheEnd;
+    private bool _matchEnd;
 
     public GameObject _killCube;
 
 
     public List<BlockDisplacement> _blocList = new();
 
-    public List<GameObject> _blocTypes = new();
+    public GameObject[] _blocTypes;
     public NavMeshSurface _navMeshSurf;
 
     private bool _recalcNavMesh;
@@ -32,6 +35,8 @@ public class GameGestion : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (_instance == null)
+            _instance = this;
         _playerJoinScript = GetComponent<PlayerJoin>();
 
         _navMeshSurf.UpdateNavMesh(_navMeshSurf.navMeshData);
@@ -87,6 +92,10 @@ public class GameGestion : MonoBehaviour
                 _playerScript2._playerInput.actions.Disable();
             }
 
+
+
+            //Rounds
+
             if (_mancheEnd == false)
             {
                 _killCube.SetActive(false);
@@ -94,8 +103,8 @@ public class GameGestion : MonoBehaviour
                 _playerScript2._playerInput.actions.Enable();
                 if (_recalcNavMesh == true)
                 {
-                   _playerScript1.transform.position = new Vector3(_playerScript1.transform.position.x, _playerScript1.transform.position.y + 5, _playerScript1.transform.position.z);
-                   _playerScript2.transform.position = new Vector3(_playerScript2.transform.position.x, _playerScript2.transform.position.y + 5, _playerScript2.transform.position.z);
+                    _playerScript1.transform.position = new Vector3(_playerScript1.transform.position.x, _playerScript1.transform.position.y + 5, _playerScript1.transform.position.z);
+                    _playerScript2.transform.position = new Vector3(_playerScript2.transform.position.x, _playerScript2.transform.position.y + 5, _playerScript2.transform.position.z);
                     _navMeshSurf.UpdateNavMesh(_navMeshSurf.navMeshData);
                     _playerScript1.transform.position = new Vector3(_playerScript1.transform.position.x, _playerScript1.transform.position.y - 5, _playerScript1.transform.position.z);
                     _playerScript2.transform.position = new Vector3(_playerScript2.transform.position.x, _playerScript2.transform.position.y - 5, _playerScript2.transform.position.z);
@@ -104,53 +113,57 @@ public class GameGestion : MonoBehaviour
             }
             else
             {
-                _killCube.SetActive(true);
+                if (_matchEnd == false)
+                {
+                    _killCube.SetActive(true);
 
-                //Action on player
-                _playerScript1._playerInput.actions.Disable();
-                _playerScript2._playerInput.actions.Disable();
-                //respawnPose
-                _playerScript1.gameObject.transform.position = _playerJoinScript._spawnPoint[_playerScript1._playerNumber].position;
-                _playerScript2.gameObject.transform.position = _playerJoinScript._spawnPoint[_playerScript2._playerNumber].position;
-                //respawnRota
-                _playerScript1.gameObject.transform.rotation = _playerJoinScript._spawnPoint[_playerScript1._playerNumber].rotation;
-                _playerScript2.gameObject.transform.rotation = _playerJoinScript._spawnPoint[_playerScript2._playerNumber].rotation;
+                    //Action on player
+                    _playerScript1._playerInput.actions.Disable();
+                    _playerScript2._playerInput.actions.Disable();
+                    //respawnPose
+                    _playerScript1.gameObject.transform.position = _playerJoinScript._spawnPoint[_playerScript1._playerNumber].position;
+                    _playerScript2.gameObject.transform.position = _playerJoinScript._spawnPoint[_playerScript2._playerNumber].position;
+                    //respawnRota
+                    _playerScript1.gameObject.transform.rotation = _playerJoinScript._spawnPoint[_playerScript1._playerNumber].rotation;
+                    _playerScript2.gameObject.transform.rotation = _playerJoinScript._spawnPoint[_playerScript2._playerNumber].rotation;
 
-                //Action For bloc
-                // _playerScript1._didInstance=false;
-                //   _playerScript2._didInstance = false;
-                _playerScript1._playerInput.actions.FindAction("Look").Enable();
-                _playerScript2._playerInput.actions.FindAction("Look").Enable();
+                    //Action For bloc
+                    // _playerScript1._didInstance=false;
+                    //   _playerScript2._didInstance = false;
+                    _playerScript1._playerInput.actions.FindAction("Look").Enable();
+                    _playerScript2._playerInput.actions.FindAction("Look").Enable();
 
-                _playerScript1._playerInput.actions.FindAction("Interact").Enable();
-                _playerScript2._playerInput.actions.FindAction("Interact").Enable();
+                    _playerScript1._playerInput.actions.FindAction("Interact").Enable();
+                    _playerScript2._playerInput.actions.FindAction("Interact").Enable();
 
-                _playerScript1._playerInput.actions.FindAction("Rotate").Enable();
-                _playerScript2._playerInput.actions.FindAction("Rotate").Enable();
-                _recalcNavMesh = true;
-
+                    _playerScript1._playerInput.actions.FindAction("Rotate").Enable();
+                    _playerScript2._playerInput.actions.FindAction("Rotate").Enable();
+                    _recalcNavMesh = true;
+                }
+                else
+                    print("END");
             }
         }
 
     }
-    void OnPlayerJoined(PlayerInput playerInput)
-    {
-        if (_numPlayers == 0)
-        {
+    //void OnPlayerJoined(PlayerInput playerInput)
+    //{
+    //    if (_numPlayers == 0)
+    //    {
 
-            _playerScript1 = playerInput.gameObject.GetComponent<PlayerScript>();
-        }
-        else if (_numPlayers == 1)
-        {
-            _playerScript2 = playerInput.gameObject.GetComponent<PlayerScript>();
+    //        _playerScript1 = playerInput.gameObject.GetComponent<PlayerScript>();
+    //    }
+    //    else if (_numPlayers == 1)
+    //    {
+    //        _playerScript2 = playerInput.gameObject.GetComponent<PlayerScript>();
 
-        }
-        _numPlayers++;
-        if (_numPlayers == 2)
-        {
-            _playerHasJoin = true;
-        }
+    //    }
+    //    _numPlayers++;
+    //    if (_numPlayers == 2)
+    //    {
+    //        _playerHasJoin = true;
+    //    }
 
-    }
+    //}
 }
 

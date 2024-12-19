@@ -126,6 +126,10 @@ MonoBehaviour:
   maxBounces: 3
   bounceExplosion: {fileID: 0}
   bounceVfx: {fileID: 8464845775619510915, guid: 0015265091dea684f8c771379dc2214b, type: 3}
+  audios:
+  - {fileID: 8300000, guid: bfbdd5493c39f46498aaf847ff1cc112, type: 3}
+  - {fileID: 8300000, guid: fbe173ab184725543a8655d1fb03c467, type: 3}
+  - {fileID: 8300000, guid: 0f6495445da4ffc48b9421359eafc499, type: 3}
   currentBounces: 0
 --- !u!54 &7230582829067292193
 Rigidbody:

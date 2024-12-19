@@ -6,6 +6,7 @@ public class BouncierBullet : MonoBehaviour
     public int maxBounces = 3;
 
     public GameObject bounceVfx;
+    public AudioClip[] audios;
 
     public int currentBounces = 0;
     private Vector3 direction;
@@ -36,7 +37,7 @@ public class BouncierBullet : MonoBehaviour
         {
             if (hit.collider.CompareTag("Shield"))
             {
-                
+
                 direction = -direction.normalized;
 
                 transform.position = hit.point;
@@ -47,17 +48,19 @@ public class BouncierBullet : MonoBehaviour
 
             Vector3 normal = new Vector3(hit.normal.x, 0, hit.normal.z).normalized;
             Instantiate(bounceVfx, transform.position, Quaternion.identity);
-                direction = Vector3.Reflect(direction, normal).normalized;
+            SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
 
-                transform.position = hit.point;
+            direction = Vector3.Reflect(direction, normal).normalized;
 
-                currentBounces++;
+            transform.position = hit.point;
 
-                if (currentBounces >= maxBounces)
-                {
-                    Destroy(gameObject);
-                }
-            
+            currentBounces++;
+
+            if (currentBounces >= maxBounces)
+            {
+                Destroy(gameObject);
+            }
+
         }
     }
 }
