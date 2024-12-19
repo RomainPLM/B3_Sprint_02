@@ -39,7 +39,7 @@ public class PlayerJoin : MonoBehaviour
             _p1 = PlayerInput.Instantiate(_playerPrefab, _numPlayers, controlScheme: "Gamepad", pairWithDevice: Gamepad.all[0]);
             _p1.gameObject.transform.position = _spawnPoint[_numPlayers].position;
             _p1.gameObject.transform.rotation = _spawnPoint[_numPlayers].rotation;
-            _p1.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            //_p1.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
             _p1.gameObject.GetComponent<PlayerScript>()._playerNumber = _numPlayers;
             _numPlayers++;
 
@@ -49,7 +49,7 @@ public class PlayerJoin : MonoBehaviour
             _p2 = PlayerInput.Instantiate(_playerPrefab, _numPlayers, controlScheme: "Gamepad", pairWithDevice: Gamepad.all[1]);
             _p2.gameObject.transform.position = _spawnPoint[_numPlayers].position;
             _p2.gameObject.transform.rotation = _spawnPoint[_numPlayers].rotation;
-            _p2.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            //_p2.gameObject.GetComponent<Renderer>().material.color = Color.blue;
             _p2.gameObject.GetComponent<PlayerScript>()._playerNumber = _numPlayers;
             _numPlayers++;
         }

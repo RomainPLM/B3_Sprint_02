@@ -1225,7 +1225,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   _controllers: 
-  _playerPrefab: {fileID: 7110016912892707139, guid: 8a08c7f30c58066499c07412b5406e4a, type: 3}
+  _playerPrefab: {fileID: 5850861530035072465, guid: ee3ffb809f0dabe47a5c6fe05b59fa26, type: 3}
   _p1: {fileID: 0}
   _p2: {fileID: 0}
 --- !u!114 &1068732808
@@ -1999,5 +1999,5 @@ SceneRoots:
   - {fileID: 23610233}
   - {fileID: 170701472}
   - {fileID: 337149175}
-  - {fileID: 473783905}
   - {fileID: 1827529523}
+  - {fileID: 473783905}
