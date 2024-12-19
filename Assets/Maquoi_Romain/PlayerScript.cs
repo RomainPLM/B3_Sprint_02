@@ -27,7 +27,7 @@ public class PlayerScript : MonoBehaviour
     public bool _placeBloc;
 
     public float _dodgeDistance = 5;
-    [SerializeField] private GameObject _dashStart, _dashEnd;
+    [SerializeField] private GameObject _dashStart, _dashEnd, _deathExplosion;
     private Animator _animator;
 
 
@@ -147,7 +147,9 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.layer == _bulletLayer)
         {
             _isDead = true;
+           Instantiate(_deathExplosion, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+            
             //print("Ouch i got hit by" + other.name);
         }
     }

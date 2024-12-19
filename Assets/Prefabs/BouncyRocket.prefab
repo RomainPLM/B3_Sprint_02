@@ -125,6 +125,7 @@ MonoBehaviour:
   speed: 20
   maxBounces: 3
   bounceExplosion: {fileID: 0}
+  bounceVfx: {fileID: 8464845775619510915, guid: 0015265091dea684f8c771379dc2214b, type: 3}
   currentBounces: 0
 --- !u!54 &7230582829067292193
 Rigidbody:

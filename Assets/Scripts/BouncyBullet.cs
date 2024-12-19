@@ -4,7 +4,8 @@ public class BouncyBullet : MonoBehaviour
 {
     public float speed = 10f;
     public int maxBounces = 3;
-    
+
+    public GameObject _bounceVfx;
 
     public int currentBounces = 0;
     private Vector3 direction;
@@ -45,6 +46,7 @@ public class BouncyBullet : MonoBehaviour
             }
 
             Vector3 normal = new Vector3(hit.normal.x, 0, hit.normal.z).normalized;
+            Instantiate(_bounceVfx, transform.position, Quaternion.identity);
                 direction = Vector3.Reflect(direction, normal).normalized;
 
                 transform.position = hit.point;

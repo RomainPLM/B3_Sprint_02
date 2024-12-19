@@ -219,6 +219,7 @@ MonoBehaviour:
   _dodgeDistance: 5
   _dashStart: {fileID: 5668481885574088129, guid: 668dd5714cf27d74392517a0d06dd3f3, type: 3}
   _dashEnd: {fileID: 0}
+  _deathExplosion: {fileID: 7156629992917992744, guid: 15402fda5e1a36448b8ec085905fb8dd, type: 3}
   _rotateBloc: 0
   _iemIsOn: 0
 --- !u!54 &8923841896938673322
