@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7603646888351791860}
   - component: {fileID: 9090298721709276410}
   - component: {fileID: 2616588824620061195}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: IEMSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736413419218831906}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4902,7 +4902,7 @@ GameObject:
   - component: {fileID: 8757473614477167609}
   - component: {fileID: 3757580512984498885}
   - component: {fileID: 6104280126952378435}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: IEM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4917,7 +4917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4557470522911423226}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4940,7 +4940,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 5
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -5012,9 +5012,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      minMaxState: 0
+      scalar: 0.0001
+      minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9799,7 +9799,7 @@ GameObject:
   - component: {fileID: 7365369228667449087}
   - component: {fileID: 1202237225466571556}
   - component: {fileID: 6423437944602134538}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: IEMAfterEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9829,14 +9829,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5985345104255208152}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14690,7 +14690,7 @@ GameObject:
   - component: {fileID: 8637395850714492081}
   - component: {fileID: 7457762937883107563}
   - component: {fileID: 994970553153314270}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14720,14 +14720,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7394195102789215369}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -19581,7 +19581,8 @@ GameObject:
   - component: {fileID: 1298502862564557112}
   - component: {fileID: 8262775572261049491}
   - component: {fileID: 6949155911842293132}
-  m_Layer: 0
+  - component: {fileID: 75793419637690212}
+  m_Layer: 14
   m_Name: Shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19611,9 +19612,9 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8144950486441395047}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.5
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -24461,6 +24462,27 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!135 &75793419637690212
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8144950486441395047}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 17
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8476807889572321478
 GameObject:
   m_ObjectHideFlags: 0
@@ -24472,7 +24494,7 @@ GameObject:
   - component: {fileID: 8350079973780828624}
   - component: {fileID: 3736461739341022066}
   - component: {fileID: 4238011243328374782}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Lighnings (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24503,14 +24525,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8476807889572321478}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -24578,8 +24600,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 2
+      scalar: 2
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -29365,7 +29387,7 @@ GameObject:
   - component: {fileID: 6405645919145612457}
   - component: {fileID: 1974183057888264666}
   - component: {fileID: 9005106205329079499}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: IEMFresnelSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29395,14 +29417,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8860772359170584638}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -34192,7 +34214,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a40e1b675f4cb92468c5412d18bf49c7, type: 2}
+  - {fileID: 2100000, guid: a2039c61b631c914099d7e31186dce6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34256,7 +34278,7 @@ GameObject:
   - component: {fileID: 1211359785539335262}
   - component: {fileID: 1258344802211869209}
   - component: {fileID: 5766293226284319353}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Lighnings (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34286,14 +34308,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9200787394400392951}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 3
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
