@@ -8,7 +8,7 @@ public class BlockDisplacement : MonoBehaviour
 
 
     public float _blocDisplacementSize;
-    public float _blocDisplacementTimeBetween = 0.1f;
+    public float _blocDisplacementTimeBetween = 0.5f;
     private bool _blocDisplacementEnabled;
     private float _timer;
     private Renderer _renderer;
@@ -28,7 +28,7 @@ public class BlockDisplacement : MonoBehaviour
 
     private void Update()
     {
-     
+
 
 
         //if (Time.timeAsDouble == _playerScript.timestamp)
@@ -38,12 +38,20 @@ public class BlockDisplacement : MonoBehaviour
         {
             if (_playerScript._placeBloc == true)
             {
-                
+
                 _blocIsPosed = true;
                 _renderer.material.color = Color.gray;
                 Destroy(this);
             }
         }
+
+        if (_playerScript._rotateBloc == true && _blocDisplacementEnabled == true)
+        {
+            print("u are actually tring to rotate a gameobject");
+            this.gameObject.transform.rotation *= Quaternion.Euler(0, 90, 0);
+            _playerScript._rotateBloc = false;
+        }
+
         if (_blocDisplacementEnabled == true)
         {
             if (_playerScript._playerNumber == 0)
@@ -60,8 +68,8 @@ public class BlockDisplacement : MonoBehaviour
             if (_blocDisplacementDirection.x < -0.25f)
             {
                 this.gameObject.transform.position = new Vector3((this.gameObject.transform.position.x - _blocDisplacementSize), this.transform.position.y, this.transform.position.z);
-               // print("is moving actually + " + _blocDisplacementDirection);
-               print(this.gameObject.transform.position);
+                // print("is moving actually + " + _blocDisplacementDirection);
+              //  print(this.gameObject.transform.position);
                 _blocDisplacementEnabled = false;
                 _timer = 0;
             }
@@ -69,7 +77,7 @@ public class BlockDisplacement : MonoBehaviour
             {
                 this.gameObject.transform.position = new Vector3((this.gameObject.transform.position.x + _blocDisplacementSize), this.transform.position.y, this.transform.position.z);
                 //print("is moving actually + " + _blocDisplacementDirection);
-                print(this.gameObject.transform.position);
+              //  print(this.gameObject.transform.position);
                 _blocDisplacementEnabled = false;
                 _timer = 0;
             }
@@ -77,7 +85,7 @@ public class BlockDisplacement : MonoBehaviour
             {
                 this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.transform.position.y, (this.transform.position.z - _blocDisplacementSize));
                 //print("is moving actually + " + _blocDisplacementDirection);
-                print(this.gameObject.transform.position);
+               // print(this.gameObject.transform.position);
                 _blocDisplacementEnabled = false;
                 _timer = 0;
             }
@@ -85,7 +93,7 @@ public class BlockDisplacement : MonoBehaviour
             {
                 this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.transform.position.y, (this.transform.position.z + _blocDisplacementSize));
                 //print("is moving actually + " + _blocDisplacementDirection);
-                print(this.gameObject.transform.position);
+              //  print(this.gameObject.transform.position);
 
                 _blocDisplacementEnabled = false;
                 _timer = 0;

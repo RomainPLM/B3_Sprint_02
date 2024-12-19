@@ -1439,6 +1439,7 @@ MonoBehaviour:
   _player1WinAmmount: 0
   _player2WinAmmount: 0
   _mancheEnd: 0
+  _killCube: {fileID: 0}
   _blocList: []
   _blocTypes:
   - {fileID: 2628017235863200297, guid: d08355743fb6163418202cb47749c627, type: 3}
@@ -1539,7 +1540,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8012c4700ce0cd24392f22c87fe0940a, type: 2}
+  - {fileID: 2100000, guid: 1644122cfc51d604c91f8eda18e75db6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

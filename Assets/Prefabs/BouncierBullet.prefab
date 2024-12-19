@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7140121151922074898}
   - component: {fileID: 6069609979192829848}
   - component: {fileID: 8918552278150333316}
-  - component: {fileID: 7630543353366466755}
+  - component: {fileID: 3679251845732220189}
+  - component: {fileID: 3770523001545901772}
   m_Layer: 10
   m_Name: BouncierBullet
   m_TagString: Untagged
@@ -109,7 +110,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7630543353366466755
+--- !u!114 &3679251845732220189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,9 +119,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 7491994395150293625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7560a877fbbcad945a278ce0acc47258, type: 3}
+  m_Script: {fileID: 11500000, guid: 52cd9cf9d5455924f90e1ffc43ee67e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  maxBounces: 6
+  maxBounces: 3
   currentBounces: 0
+--- !u!54 &3770523001545901772
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491994395150293625}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

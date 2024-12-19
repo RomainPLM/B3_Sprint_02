@@ -1,16 +1,22 @@
+using System;
 using UnityEngine;
 
 public class KillCube : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
-        
+        DestroyObjectsWithLayer(10);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DestroyObjectsWithLayer(int layer)
     {
-        
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.layer == layer)
+            {
+                Destroy(obj);
+            }
+        }
     }
 }

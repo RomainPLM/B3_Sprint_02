@@ -8,10 +8,11 @@ public class BulletSpawn : MonoBehaviour
     public GameObject[] Bullets;
     public int WhichBullet;
     public float FireRate = 0.5f;
-    
-    private bool canShoot = true;
+    public Collider CanonCollider;
+
+    public bool canShoot = true;
     public bool differentBullet;
-    
+    public bool inWall = false;
 
     void Start()
     {
@@ -27,7 +28,7 @@ public class BulletSpawn : MonoBehaviour
 
     void OnJump()
     {
-        if (canShoot)
+        if (canShoot && !inWall)
         {
             Shoot();
         }
@@ -53,12 +54,33 @@ public class BulletSpawn : MonoBehaviour
             differentBullet = true;
             WhichBullet = whichBullet;
         }
-        
-        
     }
 
     public void changeBack()
     {
         WhichBullet = 0;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (CanonCollider != null && CanonCollider.bounds.Intersects(other.bounds))
+        {
+            if (other.gameObject.layer == 12)
+            {
+                inWall = true;
+            }
+            else
+            {
+                inWall = false;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (CanonCollider != null && other.gameObject.layer == 12)
+        {
+            inWall = false;
+        }
     }
 }

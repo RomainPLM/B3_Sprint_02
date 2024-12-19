@@ -27,30 +27,33 @@ public class PlayerScript : MonoBehaviour
 
     public float _dodgePower = 5;
 
+    private int _bulletLayer = 10;
+
+    public bool _rotateBloc;
 
     //public double timestamp;
 
     private void Start()
     {
-        _placeBloc=false;
+        _placeBloc = false;
         _gameGestion = Object.FindAnyObjectByType<GameGestion>();
         _playerInput = GetComponent<PlayerInput>();
-        // instancier bloc recuperer son scirpt et lui attribué nombre du joueur!
+        // instancier bloc recuperer son scirpt et lui attribu  nombre du joueur!
     }
     private void Update()
     {
-       
+      
 
         if (Input.GetAxisRaw("VerticalJoy1") > 0.15 || Input.GetAxisRaw("VerticalJoy1") < -0.15)
         {
             _blocDisplacementDirection1.x = -Input.GetAxisRaw("VerticalJoy1");
-    
+
         }
         else
         {
             _blocDisplacementDirection1.x = 0;
         }
-        if (Input.GetAxisRaw("HorizontalJoy1") > 0.15 ||  Input.GetAxisRaw("HorizontalJoy1") < -0.15)
+        if (Input.GetAxisRaw("HorizontalJoy1") > 0.15 || Input.GetAxisRaw("HorizontalJoy1") < -0.15)
         {
             _blocDisplacementDirection1.y = -Input.GetAxisRaw("HorizontalJoy1");
         }
@@ -58,7 +61,7 @@ public class PlayerScript : MonoBehaviour
         {
             _blocDisplacementDirection1.y = 0;
         }
-        if (Input.GetAxisRaw("VerticalJoy2")  > 0.15 || Input.GetAxisRaw("VerticalJoy2") < -0.15)
+        if (Input.GetAxisRaw("VerticalJoy2") > 0.15 || Input.GetAxisRaw("VerticalJoy2") < -0.15)
         {
             _blocDisplacementDirection2.x = -Input.GetAxisRaw("VerticalJoy2");
 
@@ -70,26 +73,27 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetAxisRaw("HorizontalJoy2") > 0.15 || Input.GetAxisRaw("HorizontalJoy2") < -0.15)
         {
             _blocDisplacementDirection2.y = -Input.GetAxisRaw("HorizontalJoy2");
-            
+
         }
         else
         {
             _blocDisplacementDirection2.y = 0;
         }
 
-  
+
         this.transform.position = transform.position + (_movement * _movementSpeed * Time.deltaTime);
 
         if (_gameGestion._mancheEnd == true && _didInstance == false)
         {
-           
+
             _didInstance = true;
-            var randomInList =  Random.Range(0, _gameGestion._blocTypes.Count );
-            GameObject bloc = Instantiate(_gameGestion._blocTypes[/*randomInList*/0], new Vector3(transform.position.x, 00, transform.position.z),Quaternion.identity);
-           // GameObject bloc = Instantiate(_placableBloc, new Vector3(transform.position.x, 00, transform.position.z), transform.rotation);
+            var randomInList = Random.Range(0, _gameGestion._blocTypes.Count);
+            GameObject bloc = Instantiate(_gameGestion._blocTypes[randomInList], new Vector3(transform.position.x, _gameGestion._blocTypes[randomInList].transform.localScale.y / 2, transform.position.z), Quaternion.identity);
+            // GameObject bloc = Instantiate(_placableBloc, new Vector3(transform.position.x, 00, transform.position.z), transform.rotation);
             _blockDisplacement = bloc.GetComponent<BlockDisplacement>();
             _gameGestion._blocList.Add(_blockDisplacement);
             bloc.GetComponent<BlockDisplacement>()._playerScript = this;
+           
 
         }
     }
@@ -107,8 +111,8 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnInteract()
     {
-        print("i clic on Y"+_playerNumber);
-       _placeBloc = true;
+        print("i clic on Y" + _playerNumber);
+        _placeBloc = true;
 
     }
     private void OnDash()
@@ -116,5 +120,20 @@ public class PlayerScript : MonoBehaviour
         this.transform.position -= transform.forward * _dodgePower;
         print("DASH");
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == _bulletLayer)
+        {
+            _isDead = true;
+            Destroy(other.gameObject);
+            //print("Ouch i got hit by" + other.name);
+        }
+    }
+    private void OnRotate()
+    {
+        _rotateBloc = true;
+        print("rotate" + _rotateBloc + "fck l input systeme");
 
+
+    }
 }

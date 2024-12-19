@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 995173806321424231}
   - component: {fileID: 7688286274103173808}
   - component: {fileID: 4204892456355826602}
+  - component: {fileID: 4757348510563954821}
   m_Layer: 10
   m_Name: Rocket
   m_TagString: Untagged
@@ -118,10 +119,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 531926842108977702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab230f59879c2fe48834fcf8c29eb7cf, type: 3}
+  m_Script: {fileID: 11500000, guid: ba856cd9eba1de2449660be51f551a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 20
   maxBounces: 0
-  RocketExplosion: {fileID: 2317264069316897258, guid: 125e6cc7d977f134f88708f7d31580f2, type: 3}
+  RocketExplosion: {fileID: 0}
   currentBounces: 0
+--- !u!54 &4757348510563954821
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531926842108977702}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
