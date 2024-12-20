@@ -5,8 +5,8 @@ public class IEM : MonoBehaviour
     public float speed = 10f;
     public int maxBounces = 3;
     public GameObject IEMEplosion;
-    
 
+    public AudioClip[] audios;
     public int currentBounces = 0;
     private Vector3 direction;
 
@@ -62,6 +62,7 @@ public class IEM : MonoBehaviour
 
     public void OnDestroy()
     {
+        SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
         Instantiate(IEMEplosion, transform.position, transform.rotation);
     }
 }
