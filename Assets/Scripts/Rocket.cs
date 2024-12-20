@@ -64,8 +64,6 @@ public class Rocket : MonoBehaviour
 
     public void OnDestroy()
     {
-        if (graph.IsValid())
-            graph.Destroy();
         SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
         Instantiate(RocketExplosion, transform.position, transform.rotation);
     }
