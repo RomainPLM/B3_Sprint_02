@@ -68,7 +68,7 @@ Material:
     - _TessValue: 16
     - _TimeNoise: 0.2
     m_Colors:
-    - _Color0: {r: 6.055913, g: 0.41218266, b: 0.54629296, a: 0}
+    - _Color0: {r: 23.968628, g: 1.971502, b: 1.7568619, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Offset: {r: 8.5, g: 9.5, b: 0, a: 0}
     - _OffsetNoise: {r: 1.8, g: 0, b: 0, a: 0}
