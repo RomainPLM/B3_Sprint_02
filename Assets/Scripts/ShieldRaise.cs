@@ -8,7 +8,8 @@ public class ShieldRaise : MonoBehaviour
     public bool shieldActive;
     public PlayerInput _playerInput;
     public Animator animator;
-    
+    public AudioClip[] audios;
+
     private IEnumerator DisableShieldAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -20,6 +21,8 @@ public class ShieldRaise : MonoBehaviour
 
     public void OnBlock()
     {
+        SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
+
         print("Block");
         shield.SetActive(true);
         shieldActive = true;

@@ -85,14 +85,13 @@ GameObject:
   - component: {fileID: 7733979422098025324}
   - component: {fileID: 3133786878670693782}
   - component: {fileID: 7393976100547686014}
-  - component: {fileID: 3166713827886854976}
   m_Layer: 0
   m_Name: PlayerBlu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4545604276793912627
 Transform:
   m_ObjectHideFlags: 0
@@ -163,6 +162,7 @@ MonoBehaviour:
   _didInstance: 0
   _placableBloc: {fileID: 2628017235863200297, guid: d08355743fb6163418202cb47749c627, type: 3}
   _placeBloc: 0
+  dashcooldown: 0.5
   _dodgeDistance: 3
   _dashStart: {fileID: 5668481885574088129, guid: 668dd5714cf27d74392517a0d06dd3f3, type: 3}
   _deathExplosion: {fileID: 7156629992917992744, guid: 15402fda5e1a36448b8ec085905fb8dd, type: 3}
@@ -257,6 +257,7 @@ MonoBehaviour:
   inWall: 0
   _haveBonus: 0
   _bulletBonus: 0
+  _muzzleFlash: {fileID: 0}
   audios:
   - {fileID: 8300000, guid: 3be9498f4d083cc4a90b63918600d1ca, type: 3}
   - {fileID: 8300000, guid: 093aade9123480749993ed5d82a9176e, type: 3}
@@ -282,22 +283,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3166713827886854976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5850861530035072465}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cebf0957a4b75f64babdd7337ba760d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shield: {fileID: 1253736787848340708}
-  shieldActive: 0
-  _playerInput: {fileID: 0}
-  animator: {fileID: 7530200195014365909}
 --- !u!1 &8709176944432154215
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,6 +665,9 @@ MonoBehaviour:
   shieldActive: 0
   _playerInput: {fileID: 305680918388471233}
   animator: {fileID: 7530200195014365909}
+  audios:
+  - {fileID: 8300000, guid: 86bb3d976246ed244adb8ede6df2d532, type: 3}
+  - {fileID: 8300000, guid: 01247372ef2c8354e977e1c5fe41a631, type: 3}
 --- !u!1001 &7321114353412858703
 PrefabInstance:
   m_ObjectHideFlags: 0
