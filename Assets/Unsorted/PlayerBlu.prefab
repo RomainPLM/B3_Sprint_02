@@ -297,7 +297,7 @@ MonoBehaviour:
   shield: {fileID: 1253736787848340708}
   shieldActive: 0
   _playerInput: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 7530200195014365909}
 --- !u!1 &8709176944432154215
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +417,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5833733691459487819, guid: 4b718f67a037d7448a9bd8d4954a5a9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167295386548661056, guid: 4b718f67a037d7448a9bd8d4954a5a9b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8167295386548661056, guid: 4b718f67a037d7448a9bd8d4954a5a9b, type: 3}
