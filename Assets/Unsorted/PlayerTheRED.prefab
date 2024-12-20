@@ -353,7 +353,9 @@ MonoBehaviour:
   shieldActive: 0
   _playerInput: {fileID: 0}
   animator: {fileID: 4302580742839110754}
-  audios: []
+  audios:
+  - {fileID: 8300000, guid: 86bb3d976246ed244adb8ede6df2d532, type: 3}
+  - {fileID: 8300000, guid: 01247372ef2c8354e977e1c5fe41a631, type: 3}
 --- !u!1001 &73066994856723655
 PrefabInstance:
   m_ObjectHideFlags: 0
