@@ -16,25 +16,27 @@ public class TurretRotateRed : MonoBehaviour
 
     void Update()
     {
-        float horizontalInput = Input.GetAxisRaw("HorizontalJoy2");
-        float verticalInput = Input.GetAxisRaw("VerticalJoy2");
-        if (_playerScript._iemIsOn == false)
-        {
-            if (Mathf.Abs(horizontalInput) > 0.1f || Mathf.Abs(verticalInput) > 0.1f)
+      
+            float horizontalInput = Input.GetAxisRaw("HorizontalJoy2");
+            float verticalInput = Input.GetAxisRaw("VerticalJoy2");
+            if (_playerScript._iemIsOn == false)
             {
-                Vector3 direction = new Vector3(horizontalInput, 0, -verticalInput);
-                lastDirection = direction.normalized;
+                if (Mathf.Abs(horizontalInput) > 0.1f || Mathf.Abs(verticalInput) > 0.1f)
+                {
+                    Vector3 direction = new Vector3(horizontalInput, 0, -verticalInput);
+                    lastDirection = direction.normalized;
+                }
             }
-        }
-        else
-        {
-            if (Mathf.Abs(horizontalInput) > 0.1f || Mathf.Abs(verticalInput) > 0.1f)
+            else
             {
-                Vector3 direction = new Vector3(-horizontalInput, 0, +verticalInput);
-                lastDirection = direction.normalized;
+                if (Mathf.Abs(horizontalInput) > 0.1f || Mathf.Abs(verticalInput) > 0.1f)
+                {
+                    Vector3 direction = new Vector3(-horizontalInput, 0, +verticalInput);
+                    lastDirection = direction.normalized;
+                }
             }
-        }
-        Quaternion targetRotation = Quaternion.LookRotation(lastDirection, Vector3.up) * Quaternion.Euler(0, 90, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * RotationSpeed);
+            Quaternion targetRotation = Quaternion.LookRotation(lastDirection, Vector3.up) * Quaternion.Euler(0, 90, 0);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * RotationSpeed);
+        
     }
 }

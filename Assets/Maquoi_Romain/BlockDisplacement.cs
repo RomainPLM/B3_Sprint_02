@@ -11,25 +11,37 @@ public class BlockDisplacement : MonoBehaviour
     public float _blocDisplacementTimeBetween = 0.5f;
     private bool _blocDisplacementEnabled;
     private float _timer;
-    private Renderer _renderer;
+    private Renderer[] _renderer;
     private bool _placable;
     public PlayerScript _playerScript;
     public bool _blocIsPosed;
     public Vector2 _blocDisplacementDirection;
     private double _timestamp;
+    public Vector4 _clampDispValues;
+    private Vector3 _clampPosValues;
 
     private void Start()
     {
-        _renderer = GetComponent<Renderer>();
-        _renderer.material.color = Color.green;
-        _blocDisplacementEnabled = true;
+        if (_renderer == null)
+        {
+            _renderer = GetComponents<Renderer>();
+            _renderer = GetComponentsInChildren<Renderer>();
 
+        }
+        foreach (Renderer renderer in _renderer)
+        {
+            renderer.material.SetColor("_PlaceColor", Color.green);
+            renderer.material.SetFloat("_FresnelEnabled", 1f);
+        }
+        _blocDisplacementEnabled = true;
+        _placable = true;
     }
 
     private void Update()
     {
-
-
+        _clampPosValues.x = Mathf.Clamp(transform.position.x, -27.75f, 27.75f);
+        _clampPosValues.z = Mathf.Clamp(transform.position.z, -13.4f, 13.4f);
+        transform.position = _clampPosValues;
 
         //if (Time.timeAsDouble == _playerScript.timestamp)
         //    return;
@@ -38,9 +50,14 @@ public class BlockDisplacement : MonoBehaviour
         {
             if (_playerScript._placeBloc == true)
             {
-
+                print("shabingus");
                 _blocIsPosed = true;
-                _renderer.material.color = Color.gray;
+                print(_renderer);
+                foreach (Renderer renderer in _renderer)
+                {
+                    renderer.material.SetColor("_PlaceColor", Color.gray);
+                    renderer.material.SetFloat("_FresnelEnabled", 0f);
+                }
                 Destroy(this);
             }
         }
@@ -54,10 +71,11 @@ public class BlockDisplacement : MonoBehaviour
 
         if (_blocDisplacementEnabled == true)
         {
+            //print("oggzzyuvggvtuat");
             if (_playerScript._playerNumber == 0)
             {
                 _blocDisplacementDirection = _playerScript._blocDisplacementDirection1;
-                //print(_blocDisplacementDirection + "direction 1");
+                // print(_blocDisplacementDirection + "direction 1");
             }
             else if (_playerScript._playerNumber == 1)
             {
@@ -69,15 +87,16 @@ public class BlockDisplacement : MonoBehaviour
             {
                 this.gameObject.transform.position = new Vector3((this.gameObject.transform.position.x - _blocDisplacementSize), this.transform.position.y, this.transform.position.z);
                 // print("is moving actually + " + _blocDisplacementDirection);
-              //  print(this.gameObject.transform.position);
+                //  print(this.gameObject.transform.position);
                 _blocDisplacementEnabled = false;
                 _timer = 0;
             }
             else if (_blocDisplacementDirection.x > 0.25f)
             {
+
                 this.gameObject.transform.position = new Vector3((this.gameObject.transform.position.x + _blocDisplacementSize), this.transform.position.y, this.transform.position.z);
                 //print("is moving actually + " + _blocDisplacementDirection);
-              //  print(this.gameObject.transform.position);
+                //  print(this.gameObject.transform.position);
                 _blocDisplacementEnabled = false;
                 _timer = 0;
             }
@@ -85,7 +104,7 @@ public class BlockDisplacement : MonoBehaviour
             {
                 this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.transform.position.y, (this.transform.position.z - _blocDisplacementSize));
                 //print("is moving actually + " + _blocDisplacementDirection);
-               // print(this.gameObject.transform.position);
+                // print(this.gameObject.transform.position);
                 _blocDisplacementEnabled = false;
                 _timer = 0;
             }
@@ -93,7 +112,7 @@ public class BlockDisplacement : MonoBehaviour
             {
                 this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.transform.position.y, (this.transform.position.z + _blocDisplacementSize));
                 //print("is moving actually + " + _blocDisplacementDirection);
-              //  print(this.gameObject.transform.position);
+                //  print(this.gameObject.transform.position);
 
                 _blocDisplacementEnabled = false;
                 _timer = 0;
@@ -112,10 +131,20 @@ public class BlockDisplacement : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer != 6) { _renderer.material.color = Color.red;/* print(other.gameObject);*/ _placable = false; _playerScript._placeBloc = false; }
+        if (other.gameObject.layer != 6)
+        {
+            foreach (Renderer renderer in _renderer)
+                renderer.material.SetColor("_PlaceColor", Color.red);/* print(other.gameObject);*/ _placable = false;
+            _playerScript._placeBloc = false;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer != 6) { _renderer.material.color = Color.green; _placable = true; }
+        if (other.gameObject.layer != 6)
+        {
+            foreach (Renderer renderer in _renderer)
+                renderer.material.SetColor("_PlaceColor", Color.green);
+            _placable = true;
+        }
     }
 }

@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,6 +31,8 @@ public class GameGestion : MonoBehaviour
     public GameObject[] _blocTypes;
     public NavMeshSurface _navMeshSurf;
 
+    public GameObject _bonus;
+
     private bool _recalcNavMesh;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -40,12 +43,14 @@ public class GameGestion : MonoBehaviour
         _playerJoinScript = GetComponent<PlayerJoin>();
 
         _navMeshSurf.UpdateNavMesh(_navMeshSurf.navMeshData);
+       // Instantiate(_bonus, new Vector3(0, 1, 0),Quaternion.identity);
     }
     // if je re meurt je ne me stop pas (refaire fin de manche)(bool a reset?)
     // Update is called once per frame  
     void Update()
     {
-
+        print(_playerScript1._isDead);
+        print(_playerScript2._isDead);
 
         if (_playerHasJoin == true)
         {
@@ -65,8 +70,10 @@ public class GameGestion : MonoBehaviour
                 _playerScript2._placeBloc = false;
             }
             //Death detection
+            
             if (_playerScript1._isDead == true)
             {
+                print("aouch");
                 _mancheEnd = true;
                 _player2WinAmmount++;
                 //Revive
@@ -74,6 +81,7 @@ public class GameGestion : MonoBehaviour
             }
             else if (_playerScript2._isDead == true)
             {
+                print("aouch2");
                 _mancheEnd = true;
                 _player1WinAmmount++;
                 _playerScript2._isDead = false;
@@ -108,13 +116,14 @@ public class GameGestion : MonoBehaviour
                     _navMeshSurf.UpdateNavMesh(_navMeshSurf.navMeshData);
                     _playerScript1.transform.position = new Vector3(_playerScript1.transform.position.x, _playerScript1.transform.position.y - 5, _playerScript1.transform.position.z);
                     _playerScript2.transform.position = new Vector3(_playerScript2.transform.position.x, _playerScript2.transform.position.y - 5, _playerScript2.transform.position.z);
+                 //   Instantiate(_bonus, new Vector3(0, 1, 0), Quaternion.identity);
                     _recalcNavMesh = false;
                 }
             }
             else
             {
-                if (_matchEnd == false)
-                {
+                //if (_matchEnd == false)
+                //{
                     _killCube.SetActive(true);
 
                     //Action on player
@@ -139,31 +148,31 @@ public class GameGestion : MonoBehaviour
                     _playerScript1._playerInput.actions.FindAction("Rotate").Enable();
                     _playerScript2._playerInput.actions.FindAction("Rotate").Enable();
                     _recalcNavMesh = true;
-                }
-                else
-                    print("END");
+                //}
+                //else
+                //    print("END");
             }
         }
 
     }
-    //void OnPlayerJoined(PlayerInput playerInput)
-    //{
-    //    if (_numPlayers == 0)
-    //    {
+    void OnPlayerJoined(PlayerInput playerInput)
+    {
+        if (_numPlayers == 0)
+        {
 
-    //        _playerScript1 = playerInput.gameObject.GetComponent<PlayerScript>();
-    //    }
-    //    else if (_numPlayers == 1)
-    //    {
-    //        _playerScript2 = playerInput.gameObject.GetComponent<PlayerScript>();
+            _playerScript1 = playerInput.gameObject.GetComponent<PlayerScript>();
+        }
+        else if (_numPlayers == 1)
+        {
+            _playerScript2 = playerInput.gameObject.GetComponent<PlayerScript>();
 
-    //    }
-    //    _numPlayers++;
-    //    if (_numPlayers == 2)
-    //    {
-    //        _playerHasJoin = true;
-    //    }
+        }
+        _numPlayers++;
+        if (_numPlayers == 2)
+        {
+            _playerHasJoin = true;
+        }
 
-    //}
+    }
 }
 

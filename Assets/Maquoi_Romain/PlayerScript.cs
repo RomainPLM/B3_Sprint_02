@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Rendering.LookDev;
+//using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Threading.Tasks;
@@ -77,7 +77,7 @@ public class PlayerScript : MonoBehaviour
 
             _didInstance = true;
             var randomInList = Random.Range(0, _gameGestion._blocTypes.Length);
-            GameObject bloc = Instantiate(_gameGestion._blocTypes[randomInList], new Vector3(transform.position.x, _gameGestion._blocTypes[randomInList].transform.localScale.y / 2, transform.position.z), Quaternion.identity);
+            GameObject bloc = Instantiate(_gameGestion._blocTypes[randomInList], new Vector3(transform.position.x, _gameGestion._blocTypes[randomInList].transform.position.y / 2, transform.position.z), _gameGestion._blocTypes[randomInList].transform.rotation);
             // GameObject bloc = Instantiate(_placableBloc, new Vector3(transform.position.x, 00, transform.position.z), transform.rotation);
             _blockDisplacement = bloc.GetComponent<BlockDisplacement>();
             _gameGestion._blocList.Add(_blockDisplacement);
@@ -176,7 +176,7 @@ public class PlayerScript : MonoBehaviour
             Instantiate(_deathExplosion, transform.position, Quaternion.identity);
             Death();
             Destroy(other.gameObject);
-            //print("Ouch i got hit by" + other.name);
+            print("Ouch i got hit by" + other.name + "");
         }
     }
     private void OnRotate()

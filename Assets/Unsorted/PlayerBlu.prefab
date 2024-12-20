@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 7733979422098025324}
   - component: {fileID: 3133786878670693782}
   - component: {fileID: 7393976100547686014}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerBlu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.19204117, y: 1.3793492, z: -1.29}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.57, y: 0.57, z: 0.57}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7432910947602934647}
