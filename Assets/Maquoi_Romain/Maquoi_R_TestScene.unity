@@ -805,13 +805,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4979833145001525493, guid: ee3ffb809f0dabe47a5c6fe05b59fa26, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5850861530035072465, guid: ee3ffb809f0dabe47a5c6fe05b59fa26, type: 3}
       propertyPath: m_Name
       value: PlayerBlu
       objectReference: {fileID: 0}
     - target: {fileID: 5850861530035072465, guid: ee3ffb809f0dabe47a5c6fe05b59fa26, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8239413682275975115, guid: ee3ffb809f0dabe47a5c6fe05b59fa26, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2276,14 +2284,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1639877245740718147, guid: 4036f11a97b9ad04e9e57897311fc11c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4458946641816360644, guid: 4036f11a97b9ad04e9e57897311fc11c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4648891307314182231, guid: 4036f11a97b9ad04e9e57897311fc11c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.77

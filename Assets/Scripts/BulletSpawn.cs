@@ -36,6 +36,7 @@ public class BulletSpawn : MonoBehaviour
 
     void OnJump()
     {
+        CanonCollider.enabled = true;
         if (canShoot && !inWall)
         {
             Shoot();
@@ -44,6 +45,7 @@ public class BulletSpawn : MonoBehaviour
 
     private void Shoot()
     {
+        CanonCollider.enabled = true;
         SfxManager._instance.PlayAudioClip(audios, SpawnPoint.transform, false, 1f);
         Instantiate(_muzzleFlash, SpawnPoint.position, Quaternion.identity);
         Instantiate(Bullets[WhichBullet], SpawnPoint.position, SpawnPoint.rotation);
