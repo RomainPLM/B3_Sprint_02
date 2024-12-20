@@ -25,7 +25,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject _placableBloc;
 
     public bool _placeBloc;
-
+    private float timer = 0;
+    [Range(.5f, 10f)] public float dashcooldown;
+    private bool dashOncool;
     public float _dodgeDistance = 5;
     [SerializeField] private GameObject _dashStart, _deathExplosion;
     private Animator _animator;
@@ -40,6 +42,7 @@ public class PlayerScript : MonoBehaviour
     public AudioClip[] placeBlocaudios, dashAudios, deathAudios;
     public float soundVolume;
     public int timebfrSiap;
+    private float baseMovSpeed;
 
     private MeshRenderer[] _renderer;
     private SkinnedMeshRenderer[] _Srenderer;
@@ -47,6 +50,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
+        dashOncool = true;
         _placeBloc = false;
         _gameGestion = Object.FindAnyObjectByType<GameGestion>();
         _playerInput = GetComponent<PlayerInput>();
@@ -54,13 +58,20 @@ public class PlayerScript : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _renderer = GetComponentsInChildren<MeshRenderer>();
         _Srenderer = GetComponentsInChildren<SkinnedMeshRenderer>();
+        baseMovSpeed = _movementSpeed;
     }
     private void Update()
     {
         BlocDisplacement();
-
         this.transform.position = transform.position + (_movement * _movementSpeed * Time.deltaTime);
+        if (dashOncool)
+            timer += Time.deltaTime;
+        if (timer >= dashcooldown)
+        {
+            dashOncool = false;
+            timer = 0;
 
+        }
         if (_gameGestion._mancheEnd == true && _didInstance == false)
         {
 
@@ -146,13 +157,15 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnDash()
     {
+        if (!dashOncool)
+        {
+            float time = 0;
 
-        float time = 0;
-        float baseMovSpeed = _movementSpeed;
-        float curveTime = 1;
-        SfxManager._instance.PlayAudioClip(dashAudios, transform, false, soundVolume);
-        Instantiate(_dashStart, transform.position, transform.rotation);
-        Dash(time, baseMovSpeed, curveTime);
+            float curveTime = 1;
+            SfxManager._instance.PlayAudioClip(dashAudios, transform, false, soundVolume);
+            Instantiate(_dashStart, transform.position, transform.rotation);
+            Dash(time, baseMovSpeed, curveTime);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -163,7 +176,6 @@ public class PlayerScript : MonoBehaviour
             Instantiate(_deathExplosion, transform.position, Quaternion.identity);
             Death();
             Destroy(other.gameObject);
-
             //print("Ouch i got hit by" + other.name);
         }
     }
@@ -176,11 +188,15 @@ public class PlayerScript : MonoBehaviour
     }
     private async void Dash(float time, float baseMovSpeed, float curveTime)
     {
+        bool asMultiplied = false;
         _animator.SetTrigger("Dash");
-        _movementSpeed *= _dodgeDistance;
+        if (asMultiplied == false)
+            _movementSpeed *= _dodgeDistance;
+        asMultiplied = true;
         await Task.Delay(500);
         _movementSpeed = baseMovSpeed;
 
+        dashOncool = true;
     }
 
     private async void Death()

@@ -21,7 +21,7 @@ namespace Sacha
         private float m_timeScaleGo = 1;
         private float m_timeScaleStop = 0;
 
-
+        public AudioClip[] audios;
         // Update is called once per frame
         void Update()
         {
@@ -54,6 +54,8 @@ namespace Sacha
 
         public void Resume()
         {
+        SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
+
             EventSystem.current.SetSelectedGameObject(null);
             Time.timeScale = m_timeScaleGo;
             m_pauseMenuUI.SetActive(false);
@@ -61,6 +63,8 @@ namespace Sacha
         }
         public void Quit()
         {
+            SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
+
             Resume();
             EventSystem.current.SetSelectedGameObject(null);
             SceneManager.LoadScene("MainMenu");
@@ -68,12 +72,16 @@ namespace Sacha
         }
         public void NextLevel1()
         {
+            SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
+
             Resume();
             EventSystem.current.SetSelectedGameObject(null);
             SceneManager.LoadScene("Level2");
         }
         public void NextLevel2()
         {
+            SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
+
             Resume();
             EventSystem.current.SetSelectedGameObject(null);
             SceneManager.LoadScene("Level");
@@ -91,6 +99,8 @@ namespace Sacha
         }
         void Pause()
         {
+            SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
+
             m_pauseMenuUI.SetActive(true);
             EventSystem.current.SetSelectedGameObject(m_firstButtonPause);
             Time.timeScale = m_timeScaleStop;

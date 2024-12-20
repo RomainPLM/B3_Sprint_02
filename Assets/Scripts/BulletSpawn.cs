@@ -17,6 +17,7 @@ public class BulletSpawn : MonoBehaviour
     public bool _haveBonus = false;
     public int _bulletBonus;
 
+    public GameObject _muzzleFlash;
 
     public AudioClip[] audios;
 
@@ -44,7 +45,7 @@ public class BulletSpawn : MonoBehaviour
     private void Shoot()
     {
         SfxManager._instance.PlayAudioClip(audios, SpawnPoint.transform, false, 1f);
-
+        Instantiate(_muzzleFlash, SpawnPoint.position, Quaternion.identity);
         Instantiate(Bullets[WhichBullet], SpawnPoint.position, SpawnPoint.rotation);
         canShoot = false;
         differentBullet = false;
