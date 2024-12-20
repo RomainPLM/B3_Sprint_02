@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531926842108977702}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -4443661548082085037, guid: e88e09972ebc2264487a38e53c039830, type: 3}
 --- !u!23 &995173806321424231
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 03e830e38bb0d684995c282ca497c59a, type: 2}
+  - {fileID: 2100000, guid: dc94c4a1c1540384ab67ece7b051cb34, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,6 +125,10 @@ MonoBehaviour:
   speed: 20
   maxBounces: 0
   RocketExplosion: {fileID: 0}
+  audios:
+  - {fileID: 8300000, guid: d254d75dd0661694f9f3037c2a9414e4, type: 3}
+  - {fileID: 8300000, guid: 4cba39856235c944e91974fc3b053b21, type: 3}
+  - {fileID: 8300000, guid: ec4f8c354a67d654fa873da91dcf3723, type: 3}
   currentBounces: 0
 --- !u!54 &4757348510563954821
 Rigidbody:

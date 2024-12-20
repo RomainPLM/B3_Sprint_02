@@ -125,6 +125,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""35a84a14-4d1a-439a-876f-1da524493f5f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -411,6 +420,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad;Joystick"",
                     ""action"": ""UseBonus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b1517a2-708c-4d77-ab23-c20bda434f92"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1009,6 +1029,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_UseBonus = m_Player.FindAction("UseBonus", throwIfNotFound: true);
+        m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1099,6 +1120,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_UseBonus;
+    private readonly InputAction m_Player_Block;
     public struct PlayerActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1114,6 +1136,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputAction @UseBonus => m_Wrapper.m_Player_UseBonus;
+        public InputAction @Block => m_Wrapper.m_Player_Block;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1156,6 +1179,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @UseBonus.started += instance.OnUseBonus;
             @UseBonus.performed += instance.OnUseBonus;
             @UseBonus.canceled += instance.OnUseBonus;
+            @Block.started += instance.OnBlock;
+            @Block.performed += instance.OnBlock;
+            @Block.canceled += instance.OnBlock;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1193,6 +1219,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @UseBonus.started -= instance.OnUseBonus;
             @UseBonus.performed -= instance.OnUseBonus;
             @UseBonus.canceled -= instance.OnUseBonus;
+            @Block.started -= instance.OnBlock;
+            @Block.performed -= instance.OnBlock;
+            @Block.canceled -= instance.OnBlock;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1386,6 +1415,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnUseBonus(InputAction.CallbackContext context);
+        void OnBlock(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

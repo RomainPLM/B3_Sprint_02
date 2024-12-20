@@ -6,6 +6,7 @@ public class BouncyRocket : MonoBehaviour
     public int maxBounces = 3;
     public GameObject bounceExplosion, bounceVfx;
     public AudioClip[] audios;
+    public AudioClip[] audiosExpl;
 
 
     public int currentBounces = 0;
@@ -60,9 +61,11 @@ public class BouncyRocket : MonoBehaviour
                 if (currentBounces >= maxBounces)
                 {
                     Destroy(gameObject);
-                }
-               
-            
+                SfxManager._instance.PlayAudioClip(audiosExpl, transform, false, 1f);
+
+            }
+
+
         }
     }
 }

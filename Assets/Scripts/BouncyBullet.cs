@@ -6,7 +6,7 @@ public class BouncyBullet : MonoBehaviour
     public int maxBounces = 3;
 
     public GameObject _bounceVfx;
-    public AudioClip[] audios;
+    public AudioClip[] audios,eplx;
 
     public int currentBounces = 0;
     private Vector3 direction;
@@ -58,7 +58,9 @@ public class BouncyBullet : MonoBehaviour
 
                 if (currentBounces >= maxBounces)
                 {
-                    Destroy(gameObject);
+                SfxManager._instance.PlayAudioClip(eplx, transform, false, 1f);
+
+                Destroy(gameObject);
                 }
             
         }

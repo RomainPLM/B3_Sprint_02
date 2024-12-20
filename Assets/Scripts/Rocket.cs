@@ -7,8 +7,8 @@ public class Rocket : MonoBehaviour
     public int maxBounces = 0;
     public GameObject RocketExplosion;
     private PlayableGraph graph;
-    
 
+    public AudioClip[] audios;
     public int currentBounces = 0;
     private Vector3 direction;
 
@@ -66,6 +66,7 @@ public class Rocket : MonoBehaviour
     {
         if (graph.IsValid())
             graph.Destroy();
+        SfxManager._instance.PlayAudioClip(audios, transform, false, 1f);
         Instantiate(RocketExplosion, transform.position, transform.rotation);
     }
 }
