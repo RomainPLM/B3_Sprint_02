@@ -257,7 +257,7 @@ MonoBehaviour:
   inWall: 0
   _haveBonus: 0
   _bulletBonus: 0
-  _muzzleFlash: {fileID: 0}
+  _muzzleFlash: {fileID: 330359178138565731, guid: b9c70d14587b8854aa554375a8c6713e, type: 3}
   audios:
   - {fileID: 8300000, guid: 3be9498f4d083cc4a90b63918600d1ca, type: 3}
   - {fileID: 8300000, guid: 093aade9123480749993ed5d82a9176e, type: 3}
