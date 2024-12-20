@@ -216,6 +216,7 @@ MonoBehaviour:
   _didInstance: 0
   _placableBloc: {fileID: 2628017235863200297, guid: d08355743fb6163418202cb47749c627, type: 3}
   _placeBloc: 0
+  dashcooldown: 0.5
   _dodgeDistance: 3
   _dashStart: {fileID: 5668481885574088129, guid: 668dd5714cf27d74392517a0d06dd3f3, type: 3}
   _deathExplosion: {fileID: 7156629992917992744, guid: 15402fda5e1a36448b8ec085905fb8dd, type: 3}
@@ -310,6 +311,7 @@ MonoBehaviour:
   inWall: 0
   _haveBonus: 0
   _bulletBonus: 0
+  _muzzleFlash: {fileID: 330359178138565731, guid: b9c70d14587b8854aa554375a8c6713e, type: 3}
   audios:
   - {fileID: 8300000, guid: 3be9498f4d083cc4a90b63918600d1ca, type: 3}
   - {fileID: 8300000, guid: 093aade9123480749993ed5d82a9176e, type: 3}
@@ -351,6 +353,7 @@ MonoBehaviour:
   shieldActive: 0
   _playerInput: {fileID: 0}
   animator: {fileID: 4302580742839110754}
+  audios: []
 --- !u!1001 &73066994856723655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -765,6 +768,9 @@ MonoBehaviour:
   shieldActive: 0
   _playerInput: {fileID: 5021617247347207439}
   animator: {fileID: 4302580742839110754}
+  audios:
+  - {fileID: 8300000, guid: 86bb3d976246ed244adb8ede6df2d532, type: 3}
+  - {fileID: 8300000, guid: 01247372ef2c8354e977e1c5fe41a631, type: 3}
 --- !u!4 &4253781015471560654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a9356c0913b459c4fa6a65816c239724, type: 3}
